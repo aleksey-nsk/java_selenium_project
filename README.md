@@ -1,3 +1,3 @@
 # Info:
 - Проект автотесты
-- Написано на Java+Selenium+**JUnit**
+- Написано на Java+Selenium+***JUnit***
