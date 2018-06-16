@@ -3,16 +3,11 @@
 package temp.chrome;
 
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.InvalidSelectorException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
 
 public class My039Test {
     public static WebDriver driver;
