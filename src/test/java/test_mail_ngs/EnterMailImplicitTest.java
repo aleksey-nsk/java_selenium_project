@@ -34,9 +34,13 @@ public class EnterMailImplicitTest {
     public void action(){
         driver.get("https://mail.ngs.ru/");
 
-        // Ввожу логин:
+        // ВВОЖУ ЛОГИН:
+        //
+        // Можно делать таким способом:
         // WebElement loginField = driver.findElement(By.xpath("//input[@id='login']"));
         // loginField.sendKeys("user.testov");
+        //
+        // Или таким способом:
         driver.findElement(By.xpath("//input[@id='login']")).sendKeys("user.testov");
 
         // Ввожу пароль:

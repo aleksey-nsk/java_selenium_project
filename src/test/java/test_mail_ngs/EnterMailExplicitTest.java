@@ -36,26 +36,35 @@ public class EnterMailExplicitTest {
     public void action(){
         driver.get("https://mail.ngs.ru/");
 
-        // Ввожу логин (использую явное ожидание):
-        WebElement loginField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='login']")));
-        loginField.sendKeys("user.testov");
+        // ВВОЖУ ЛОГИН:
+        //
+        // Можно делать таким способом:
+        // WebElement loginField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='login']")));
+        // loginField.sendKeys("user.testov");
+        //
+        // Или таким способом:
+        wait
+          .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='login']")))
+          .sendKeys("user.testov");
 
-        // Ввожу пароль (использую явное ожидание):
-        WebElement passwordField = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='pass']")));
-        passwordField.sendKeys("zxc67*Q");
+        // Ввожу пароль:
+        (new WebDriverWait(driver, 10))
+          .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='pass']")))
+          .sendKeys("zxc67*Q");
 
-        // Жму кнопку Войти (использую явное ожидание):
-        WebElement loginButton = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@class,'ngsmail__login-submit')]")));
-        loginButton.click();
+        // Жму кнопку Войти:
+        (new WebDriverWait(driver, 15))
+          .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@class,'ngsmail__login-submit')]")))
+          .click();
 
-        // Убеждаюсь что попал в свой почтовый ящик (использую явное ожидание):
-        WebElement profileUser = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@id='td_header_right1']")));
-        String mailUser = profileUser.getText();
+        // Убеждаюсь что попал в свой почтовый ящик:
+        String mailUser = wait
+                            .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@id='td_header_right1']")))
+                            .getText();
         Assert.assertEquals("user.testov@ngs.ruВыход", mailUser);
 
-        // Нажимаю кнопку Выйти (использую явное ожидание):
-        WebElement logoutButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@href='logout']")));
-        logoutButton.click();
+        // Нажимаю кнопку Выйти:
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@href='logout']"))).click();
     }
 
     @AfterClass
