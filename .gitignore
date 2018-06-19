@@ -1,3 +1,11 @@
 # IntelliJ IDEA files
-.idea
+.idea/
 *.iml
+*.iws
+
+# Maven
+log/
+target/
+
+# Mac
+.DS_Store
