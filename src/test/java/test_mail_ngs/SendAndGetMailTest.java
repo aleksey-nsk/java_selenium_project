@@ -37,7 +37,7 @@ public class SendAndGetMailTest {
         // --------------------------------------
         // Открываю страницу почты ngs
         // --------------------------------------
-        /*driver.get("https://mail.ngs.ru/");
+        driver.get("https://mail.ngs.ru/");
 
         // --------------------------------------
         // Захожу в ПочтовыйЯщик1
@@ -45,8 +45,8 @@ public class SendAndGetMailTest {
         driver.findElement(By.xpath("//input[@id='login']")).sendKeys("user.testov");
         driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("zxc67*Q");
         driver.findElement(By.xpath("//button[contains(@class,'ngsmail__login-submit')]")).click();
-        String mailUser = driver.findElement(By.xpath("//td[@id='td_header_right1']")).getText();
-        Assert.assertEquals("user.testov@ngs.ruВыход", mailUser);
+        String mailUser1 = driver.findElement(By.xpath("//td[@id='td_header_right1']")).getText();
+        Assert.assertEquals("user.testov@ngs.ruВыход", mailUser1);
 
         // --------------------------------------
         // Отправляю письмо на ПочтовыйЯщик2
@@ -55,8 +55,8 @@ public class SendAndGetMailTest {
         String newLetter = driver.findElement(By.xpath("//td[@id='folder_name']")).getText();
         Assert.assertEquals(" НОВОЕ ПИСЬМО", newLetter);
         driver.findElement(By.xpath("//input[@name='To']")).sendKeys("test9921@ngs.ru");
-        int R1 = (int)(Math.random() * 10000); // случайное целое в диапазоне [0; 10000)
-        int R2 = (int)(Math.random() * 10000);
+        int R1 = (int)(Math.random() * 10000); // случайное целое число в диапазоне [0; 10000)
+        int R2 = (int)(Math.random() * 10000); // случайное целое число в диапазоне [0; 10000)
         String subject = "Тема " + R1 + "-" + R2; // тема письма
         String text = "Текст " + R1 + "-" + R2; // текст письма
         driver.findElement(By.xpath("//input[@name='Subject']")).sendKeys(subject);
@@ -68,7 +68,7 @@ public class SendAndGetMailTest {
         // --------------------------------------
         // Выхожу из ПочтовогоЯщика1
         // --------------------------------------
-        driver.findElement(By.xpath("//a[@href='logout']")).click(); */
+        driver.findElement(By.xpath("//a[@href='logout']")).click();
 
         // --------------------------------------
         // Захожу в ПочтовыйЯщик2
@@ -77,13 +77,13 @@ public class SendAndGetMailTest {
         driver.findElement(By.xpath("//input[@id='login']")).sendKeys("test9921");
         driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("157RTq");
         driver.findElement(By.xpath("//button[contains(@class,'ngsmail__login-submit')]")).click();
-        String mailUser = driver.findElement(By.xpath("//td[@id='td_header_right1']")).getText();
-        Assert.assertEquals("test9921@ngs.ruВыход", mailUser);
+        String mailUser2 = driver.findElement(By.xpath("//td[@id='td_header_right1']")).getText();
+        Assert.assertEquals("test9921@ngs.ruВыход", mailUser2);
 
         // --------------------------------------
         // Убеждаюсь что письмо пришло
         // --------------------------------------
-        WebElement parentElement = driver.findElement(By.xpath("//div[text()='Тема 8730-5945']/../.."));
+        WebElement parentElement = driver.findElement(By.xpath("//div[text()='"+subject+"']/../.."));
         WebElement childElement = parentElement.findElement(By.xpath("//div[contains(@class,'from_field')]"));
         childElement.click();
 
@@ -91,13 +91,13 @@ public class SendAndGetMailTest {
         Assert.assertEquals("<user.testov@ngs.ru>", fromUser);
 
         String messageSubject = driver.findElement(By.xpath("//td[text()='Тема']/../td[contains(@class,'mail_fields_data')]")).getText();
-        Assert.assertEquals("Тема 8730-5945", messageSubject);
+        Assert.assertEquals(subject, messageSubject);
 
         String toUser = driver.findElement(By.xpath("//td[text()='Кому']/../td[contains(@class,'mail_fields_data')]")).getText();
         Assert.assertEquals("test9921@ngs.ru", toUser);
 
         String messageText = driver.findElement(By.xpath("//div[contains(@class,'mail_content')]/tt")).getText();
-        Assert.assertEquals("Текст 8730-5945", messageText);
+        Assert.assertEquals(text, messageText);
 
         // --------------------------------------
         // Выхожу из ПочтовогоЯщика2
