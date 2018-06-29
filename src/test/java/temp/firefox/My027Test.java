@@ -17,7 +17,9 @@ public class My027Test {
     @BeforeClass
     public static void start(){
         System.setProperty("webdriver.gecko.driver", "C:\\Tools\\geckodriver-v0.20.1-win64.exe");
+
         DesiredCapabilities caps = new DesiredCapabilities();
+        // caps.setCapability(FirefoxDriver.MARIONETTE, false);
         driver = new FirefoxDriver(caps);
         System.out.println( ((HasCapabilities) driver).getCapabilities() );
 
@@ -33,7 +35,7 @@ public class My027Test {
     }
 
     @After
-    public void stop(){
+    public static void stop(){
         // driver.quit();
         // driver = null;
     }

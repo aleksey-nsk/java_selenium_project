@@ -1,12 +1,18 @@
-package temp.firefox;
+/*
+Несколько браузеров сразу.
+Для примера запущу сразу 2 браузера Firefox.
+Также проверю куки.
+*/
 
-import org.junit.After;
+package test_different;
+
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class My030Test {
+public class SeveralBrowsersFirefoxTest {
     private static WebDriver driver1;
     private static WebDriver driver2;
 
@@ -39,8 +45,8 @@ public class My030Test {
         System.out.println( driver2.manage().getCookies() );
     }
 
-    @After
-    public void stop(){
+    @AfterClass
+    public static void stop(){
         driver1.quit();
         driver1 = null;
 

@@ -14,10 +14,11 @@ public class My023Test {
     @BeforeClass
     public static void start(){
         System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer_Win32_3.12.0.exe");
+
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("unexpectedAlertBehaviour", "dismiss");
         driver = new InternetExplorerDriver(caps);
-        System.out.println( ( (HasCapabilities) driver ).getCapabilities() );
+        System.out.println( ((HasCapabilities) driver).getCapabilities() );
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();

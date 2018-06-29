@@ -13,11 +13,12 @@ public class My024Test {
     @BeforeClass
     public static void start(){
         System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-fullscreen");
         driver = new ChromeDriver(options);
     }
-
+    
     @Test
     public void action(){
         driver.get("https://www.google.ru/");
