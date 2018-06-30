@@ -16,18 +16,16 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.concurrent.TimeUnit;
 
 public class EnterAdminPanelTest {
     private static WebDriver driver;
-    private static WebDriverWait wait; // с помощью объекта wait буду реализовывать явные ожидания
 
     @BeforeClass
     public static void start(){
         System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer_Win32_3.12.0.exe");
         driver = new InternetExplorerDriver(); // инициализация драйвера
-        wait = new WebDriverWait(driver, 5); // инициализирую объект wait
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // задал неявное ожидание
         driver.manage().window().maximize();
     }
 
@@ -36,20 +34,20 @@ public class EnterAdminPanelTest {
         driver.get("http://localhost/litecart/admin/");
 
         // Ввожу логин:
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='username']"))).sendKeys("admin");
+        driver.findElement(By.xpath("//input[@name='username']")).sendKeys("admin");
 
         // Ввожу пароль:
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='password']"))).sendKeys("admin");
+        driver.findElement(By.xpath("//input[@name='password']")).sendKeys("admin");
 
         // Жму кнопку Login:
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@name='login']"))).click();
+        driver.findElement(By.xpath("//button[@name='login']")).click();
 
         // Убеждаюсь что вошёл в панель из-под админской учётки:
-        String accountUser = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'notice success')]"))).getText();
+        String accountUser = driver.findElement(By.xpath("//div[contains(@class,'notice success')]")).getText();
         Assert.assertEquals("You are now logged in as admin", accountUser);
 
         // Выхожу из панели администрирования:
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@title='Logout']"))).click();
+        driver.findElement(By.xpath("//a[@title='Logout']")).click();
     }
 
     @AfterClass
