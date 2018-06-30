@@ -20,6 +20,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ChromeOptionsAndCapabilitiesTest {
     private static WebDriver driver;
@@ -37,6 +39,7 @@ public class ChromeOptionsAndCapabilitiesTest {
     @Test
     public void action(){
         driver.get("https://yandex.ru/");
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.titleIs("Яндекс"));
     }
 
     @AfterClass

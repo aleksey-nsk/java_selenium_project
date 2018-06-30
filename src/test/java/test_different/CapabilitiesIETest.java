@@ -15,6 +15,8 @@ import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CapabilitiesIETest {
     private static WebDriver driver;
@@ -37,6 +39,7 @@ public class CapabilitiesIETest {
     @Test
     public void action(){
         driver.get("https://www.google.ru/");
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.titleIs("Google"));
     }
 
     @AfterClass
