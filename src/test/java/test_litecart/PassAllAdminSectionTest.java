@@ -5,7 +5,7 @@
 - для каждой страницы проверить наличие заголовка (то есть элемента с тегом h1)
 */
 
-package temp.ie;
+package test_litecart;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
