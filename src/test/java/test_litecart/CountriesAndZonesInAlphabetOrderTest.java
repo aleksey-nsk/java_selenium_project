@@ -1,5 +1,4 @@
 /*
-ВЕРСИЯ 2.
 Описание теста:
 1) Зайти в раздел Countries.
 2) Проверить, что страны расположены в алфавитном порядке.
@@ -7,7 +6,7 @@
 этой страны и там проверить, что зоны расположены в алфавитном порядке.
 */
 
-package temp.ie;
+package test_litecart;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -15,14 +14,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class CountriesInAlphabetOrderVersion2Test {
+public class CountriesAndZonesInAlphabetOrderTest {
     private static WebDriver driver;
 
     @BeforeClass
@@ -61,83 +57,37 @@ public class CountriesInAlphabetOrderVersion2Test {
         // Проверить что страны расположены
         // в алфавитном порядке
         // --------------------------------------
-        /* List<WebElement> listOfCountries = driver.findElements(By.xpath("//td[@id='content']//tbody/tr[@class='row']/td[5]/a"));
-        int amountOfCountries = listOfCountries.size();
+        int amountOfCountries = driver.findElements(By.xpath("//td[@id='content']//tbody/tr[@class='row']")).size();
         System.out.print("Количество стран = " + amountOfCountries + "\n\n");
 
         for (int i=0; i<amountOfCountries; i++){
             // if (i>5 && i< 220) { continue; } // использую для отладки
             int i_plus_1=i+1, i_plus_2=i+2, i_plus_3=i+3;
             System.out.print(i_plus_1 + "-ая итерация внешнего цикла\n");
-            // String currentCountry = driver.findElement(By.xpath("//td[@id='content']//tbody/tr["+i_plus_2+"]//a")).getText();
-            String currentCountry = listOfCountries.get(i).getText();
+            String currentCountry = driver.findElement(By.xpath("//td[@id='content']//tbody/tr["+i_plus_2+"]//a")).getText();
             System.out.print("Текущая страна: " + currentCountry + "\n");
 
             if (i_plus_1 < amountOfCountries){
-                // String nextCountry = driver.findElement(By.xpath("//td[@id='content']//tbody/tr["+i_plus_3+"]//a")).getText();
-                String nextCountry = listOfCountries.get(i+1).getText();
+                String nextCountry = driver.findElement(By.xpath("//td[@id='content']//tbody/tr["+i_plus_3+"]//a")).getText();
                 // if (i == 3) { nextCountry = "Aaaa country test"; } // для проверки падения теста
                 System.out.print("Следующая страна: " + nextCountry + "\n");
                 System.out.print("Проверяю что обе страны расположены в алфавитном порядке... ");
                 Assert.assertTrue(currentCountry.compareTo(nextCountry) < 0);
-                System.out.print("Верно!\n\n");
+                System.out.print("Верно!\n");
             }
-        } */
 
-        // ТЕПЕРЬ ЗОНЫ !!!!!! Проверю количество зон у текущей страны. И если оно отлично от нуля, то открою
-        // страницу этой страны и там проверю что зоны расположены в алфавитном порядке:
-        List<WebElement> listOfCountries = driver.findElements(By.xpath("//td[@id='content']//tbody/tr[@class='row']/td[5]/a"));
-        int amountOfCountries = listOfCountries.size();
-
-        List<WebElement> listOfZones = driver.findElements(By.xpath("//td[@id='content']//tbody/tr[@class='row']/td[6]"));
-        // int amountOfZones = listOfZones.size();
-        for (int j=0; j<amountOfCountries; j++){
-            int j_plus_2 = j+2;
-            System.out.print( (j+1) + "-ая итерация внешнего цикла\n");
-            // String currentCountry = driver.findElement(By.xpath("//td[@id='content']//tbody/tr["+i_plus_2+"]//a")).getText();
-            int amountOfZonesInCurrentCountry = Integer.parseInt(listOfZones.get(j).getText());
-            System.out.print("Количество зон у текущей страны: " + amountOfZonesInCurrentCountry + "\n");
+            // Проверю количество зон у текущей страны. И если оно отлично от нуля, то открою
+            // страницу этой страны и там проверю что зоны расположены в алфавитном порядке:
+            int amountOfZonesInCurrentCountry = Integer.parseInt(
+                    driver.findElement(By.xpath("//td[@id='content']//tbody/tr["+i_plus_2+"]/td[6]")).getText()
+            );
+            System.out.print("Количество зон в текущей стране = " + amountOfZonesInCurrentCountry + "\n\n");
 
             if (amountOfZonesInCurrentCountry != 0){
-                driver.findElement(By.xpath("//td[@id='content']//tbody/tr["+j_plus_2+"]/td[5]/a")).click();
-                System.out.print("    Открыл карточку текущей страны\n\n");
+                driver.findElement(By.xpath("//td[@id='content']//tbody/tr["+i_plus_2+"]/td[5]/a")).click();
+                System.out.print("    Открыл карточку текущей страны (" + currentCountry + ")\n\n");
 
-                for (int k=0; k<amountOfZonesInCurrentCountry; k++) {
-                    int k_plus_1 = k + 1, k_plus_2 = k + 2, k_plus_3 = k + 3;
-                    //System.out.print("    " + j_plus_1 + "-ая итерация внутреннего цикла\n");
-                    // String currentZone = driver.findElement(By.xpath("//table[@id='table-zones']/tbody/tr["+j_plus_2+"]/td[3]")).getText();
-                    List<WebElement> newListOfZones = driver.findElements(By.xpath("//table[@id='table-zones']/tbody/tr[\"+k_plus_2+\"]/td[3]"));
-                    int amountOfZones = newListOfZones.size();
-                    // System.out.print("    Текущая зона: " + currentZone + "\n");
-                    for (int m = 0; m < amountOfZones; m++) {
-                        //
-                        String currentZone = newListOfZones.get(m).getText();
-                        System.out.print("Текущая зона: " + currentZone + "\n");
-
-
-                        /* if ( (m+2) < amountOfZones) {
-                            // String nextZone = driver.findElement(By.xpath("//table[@id='table-zones']/tbody/tr[" + j_plus_3 + "]/td[3]")).getText();
-                            String nextZone = newListOfZones.get(m+2).getText();
-                            // if (j == 5) { nextZone = "Aaaa zone test"; } // для проверки падения теста
-                            System.out.print("    Следующая зона: " + nextZone + "\n");
-                            System.out.print("    Проверяю что обе зоны расположены в алфавитном порядке... ");
-                            Assert.assertTrue(currentZone.compareTo(nextZone) < 0);
-                            System.out.print("Верно!\n\n");
-                        } */
-                    }
-                    System.out.print("\n" + "    Проверку зон для текущей страны закончил. Возвращаюсь к списку стран\n\n");
-                    driver.findElement(By.xpath("//ul[@id='box-apps-menu']/li[@class='selected']")).click();
-                }
-            }
-        }
-
-
-
-
-
-
-
-                /* for (int j=0; j<amountOfZonesInCurrentCountry; j++){
+                for (int j=0; j<amountOfZonesInCurrentCountry; j++){
                     int j_plus_1=j+1, j_plus_2=j+2, j_plus_3=j+3;
                     System.out.print("    " + j_plus_1 + "-ая итерация внутреннего цикла\n");
                     String currentZone = driver.findElement(By.xpath("//table[@id='table-zones']/tbody/tr["+j_plus_2+"]/td[3]")).getText();
@@ -151,23 +101,24 @@ public class CountriesInAlphabetOrderVersion2Test {
                         Assert.assertTrue(currentZone.compareTo(nextZone) < 0);
                         System.out.print("Верно!\n\n");
                     }
-                } */
+                }
 
-                /* System.out.print("\n" + "    Проверку зон для текущей страны закончил. Возвращаюсь к списку стран\n\n");
+                System.out.print("\n" + "    Проверку зон для текущей страны закончил. Возвращаюсь к списку стран\n\n");
                 driver.findElement(By.xpath("//ul[@id='box-apps-menu']/li[@class='selected']")).click();
-            } */
+            }
+        }
 
         // --------------------------------------
         // Выхожу из панели администрирования
         // --------------------------------------
-        // driver.findElement(By.xpath("//a[@title='Logout']")).click();
+        driver.findElement(By.xpath("//a[@title='Logout']")).click();
     }
 
     @AfterClass
     public static void stop(){
         System.out.print("***** Внутри метода stop() *****\n\n");
 
-        // driver.quit();
-        // driver = null;
+        driver.quit();
+        driver = null;
     }
 }
