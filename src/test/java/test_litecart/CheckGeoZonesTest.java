@@ -1,13 +1,11 @@
 /*
-НЕ РАБОТАЕТ!!! Надо исправлять!!!!
-
 Описание теста:
 1) Открыть в меню раздел Geo Zones.
 2) Зайти в каждую из стран и проверить, что
 зоны расположены в алфавитном порядке.
 */
 
-package temp.ie;
+package test_litecart;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -79,11 +77,11 @@ public class CheckGeoZonesTest {
                 for (int j=0; j<amountOfZonesInCurrentCountry; j++){
                     int j_plus_1=j+1, j_plus_2=j+2, j_plus_3=j+3;
                     System.out.print("    " + j_plus_1 + "-ая итерация внутреннего цикла\n");
-                    String currentZone = driver.findElement(By.xpath("//table[@id='table-zones']/tbody/tr["+j_plus_2+"]/td[3]/select/option[@selected=selected]")).getText();
+                    String currentZone = driver.findElement(By.xpath("//table[@id='table-zones']/tbody/tr["+j_plus_2+"]/td[3]/select/option[@selected='selected']")).getText();
                     System.out.print("    Текущая зона: " + currentZone + "\n");
 
                     if (j_plus_1 < amountOfZonesInCurrentCountry){
-                        String nextZone = driver.findElement(By.xpath("//table[@id='table-zones']/tbody/tr["+j_plus_3+"]/td[3]/select/option[@selected=selected]")).getText();
+                        String nextZone = driver.findElement(By.xpath("//table[@id='table-zones']/tbody/tr["+j_plus_3+"]/td[3]/select/option[@selected='selected']")).getText();
                         // if (j == 5) { nextZone = "Aaaa zone test"; } // для проверки падения теста
                         System.out.print("    Следующая зона: " + nextZone + "\n");
                         System.out.print("    Проверяю что обе зоны расположены в алфавитном порядке... ");
