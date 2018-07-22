@@ -24,23 +24,35 @@ public class LoginTest {
         mailBoxPage = new MailBoxPage(driver);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // задал неявное ожидание
         driver.manage().window().maximize();
-        driver.get("https://mail.ngs.ru/");
     }
 
     @Test
-    public void loginTest() {
-        System.out.print("\n\n***** Внутри метода loginTest() *****\n\n");
+    public void action() {
+        System.out.print("\n\n***** Внутри метода action() *****\n\n");
+        driver.get("https://mail.ngs.ru/");
+
+        System.out.println("Ввожу логин");
         loginPage.inputLogin("user.testov");
+        System.out.println("Ввожу пароль");
         loginPage.inputPassword("zxc67*Q");
+        System.out.println("Нажимаю кнопку входа");
         loginPage.clickLoginButton();
+
+        System.out.println("Проверю что попал в свой почтовый аккаунт...");
         String mailUser = mailBoxPage.getUserMail();
+        // mailUser = "new-user.testov@ngs.ruВыход"; // для проверки падения теста
+        System.out.println("  expected = user.testov@ngs.ruВыход");
+        System.out.println("  mailUser = " + mailUser);
         Assert.assertEquals("user.testov@ngs.ruВыход", mailUser);
+        System.out.println("  Верно!");
+
+        System.out.println("Выхожу из почтового аккаунта");
+        mailBoxPage.userLogout();
     }
 
     @AfterClass
-    public static void tearDown() {
-        System.out.print("\n\n***** Внутри метода tearDown() *****\n\n");
-        mailBoxPage.userLogout();
+    public static void stop() {
+        System.out.print("\n\n***** Внутри метода stop() *****\n\n");
         driver.quit();
         driver = null;
     }
