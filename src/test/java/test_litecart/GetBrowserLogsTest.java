@@ -39,7 +39,7 @@ public class GetBrowserLogsTest {
     }
 
     @Test
-    public void action() throws InterruptedException {
+    public void action() {
         System.out.print("\n\n***** Внутри метода action() *****\n\n");
 
         // Какие логи доступны:
