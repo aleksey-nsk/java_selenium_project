@@ -11,6 +11,8 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
 
+// Класс для создания
+// объекта-страницы который возвращает список идентификаторов клиентов:
 public class CustomerListPage extends Page {
 
     public CustomerListPage(WebDriver driver) {
@@ -19,6 +21,7 @@ public class CustomerListPage extends Page {
     }
 
     public CustomerListPage open() {
+        // После входа в админскую панель открываем страницу со списком клиентов:
         driver.get("http://localhost/litecart/admin/?app=customers&doc=customers");
         return this;
     }
@@ -27,6 +30,13 @@ public class CustomerListPage extends Page {
     private List<WebElement> customerRows;
 
     public Set<String> getCustomerIds() {
+        // Возвращаем строки таблицы, которые содержат нужную инфу
+        // и у каждой строки берем текст третьего столбца (идентификатор клиента):
+        /*
+        return driver.findElements(By.cssSelector("table.dataTable tr.row")).stream()
+                .map(e -> e.findElements(By.tagName("td")).get(2).getText())
+                .collect(toSet());
+        */
         return customerRows.stream()
                 .map(e -> e.findElements(By.tagName("td")).get(2).getText())
                 .collect(toSet());

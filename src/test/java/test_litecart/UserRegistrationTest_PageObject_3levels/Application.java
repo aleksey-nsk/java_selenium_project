@@ -87,28 +87,33 @@ public class Application {
     }
 
     public Set<String> getCustomerIds() {
-        // Добавим в тест проверки. Проверки выполняются через
-        // админскую панель:
+        /*
+        // Добавим в тест проверки. Проверки выполняются через админскую панель:
         driver.get("http://localhost/litecart/admin");
-        // Проверка, если логин уже выполнен
-        // то повторно его выполнять не надо:
+        // Проверка, если логин уже выполнен то повторно его выполнять не надо:
         if (driver.findElements(By.id("box-login")).size() > 0) {
             driver.findElement(By.name("username")).sendKeys("admin");
             driver.findElement(By.name("password")).sendKeys("admin");
             driver.findElement(By.name("login")).click();
             wait.until((WebDriver d) -> d.findElement(By.id("box-apps-menu")));
         }
-
-        // После входа в админскую панель открываем
-        // страницу со списком клиентов:
+        // После входа в админскую панель открываем страницу со списком клиентов:
         driver.get("http://localhost/litecart/admin/?app=customers&doc=customers");
-        // Загружаем строки таблицы, которые содержат нужную инфу
-        // и у каждой строки берем текст третьего столбца (идентификатор клиента).
-        /* Set<String> oldIds = driver.findElements(By.cssSelector("table.dataTable tr.row")).stream()
-                .map(e -> e.findElements(By.tagName("td")).get(2).getText())
-                .collect(toSet()); */
+        // Возвращаем строки таблицы, которые содержат нужную инфу
+        // и у каждой строки берем текст третьего столбца (идентификатор клиента):
         return driver.findElements(By.cssSelector("table.dataTable tr.row")).stream()
                 .map(e -> e.findElements(By.tagName("td")).get(2).getText())
                 .collect(toSet());
+        */
+
+        if (adminPanelLoginPage.open().isOnThisPage()) {
+            adminPanelLoginPage.enterUsername("admin").enterPassword("admin").submitLogin();
+            // методы вытягиваются в цепочку (это так называемый флуент-интерфейс, особый стиль написания кода).
+            // Для реализации этого стиля надо чтобы методы возвращали готовый объект-страницу (return this;)
+        }
+        return customerListPage.open().getCustomerIds();
+        // - в итоге оба объекта-страницы не возвращают никаких элементов, находящихся на этих страницах.
+        // Они предоставляют сервис (предоставляют услуги) по заполнению формы и выполнению входа.
+        // И услугу по получению списка идентификаторов клиентов.
     }
 }
