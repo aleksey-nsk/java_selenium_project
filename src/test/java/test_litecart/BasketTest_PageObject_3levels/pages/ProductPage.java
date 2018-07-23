@@ -44,8 +44,12 @@ public class ProductPage extends Page {
             driver.findElement(By.xpath("//select[@name='options[Size]']")).sendKeys("Small");
         }
      */
-    public void selectSize(String size) {
-        driver.findElement(By.xpath("//select[@name='options[Size]']")).sendKeys(size);
+    public void selectSize() {
+        if (isElementPresent(driver, By.xpath("//select[@name='options[Size]']"))) {
+            System.out.println("Поле Size присутствует");
+            driver.findElement(By.xpath("//select[@name='options[Size]']")).sendKeys("Small");
+        }
+        System.out.println("Поле Size отсутствует");
     }
 
     /*
@@ -65,6 +69,7 @@ public class ProductPage extends Page {
         System.out.print("Счётчик обновлён!\n");
      */
     public void waitForCounterUpdating(int oldAmount) {
+        System.out.println("Функция ожидания обновления счётчика");
         int newAmount = oldAmount + 1;
         (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElement(
                 By.xpath("//span[@class='quantity']"),

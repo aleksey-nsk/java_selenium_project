@@ -12,6 +12,7 @@ public class MainPage extends Page {
 
     // Метод open() открывает эту главную страницу:
     public void open() {
+        System.out.println("Открываю главную страницу магазина");
         driver.get("http://localhost/litecart/en/");
     }
 

@@ -14,5 +14,10 @@ public class Page {
         // wait = new WebDriverWait(driver, 10);
     }
 
+    // Метод проверяющий есть ли элемент:
+    public boolean isElementPresent(WebDriver driver, By locator){
+        return driver.findElements(locator).size() > 0;
+    }
+
 
 }
