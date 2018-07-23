@@ -33,14 +33,14 @@ public class Application {
         driver = null;
     }
 
-    // Метод проверяющий есть ли элемент:
-    /* private boolean areElementsPresent(WebDriver driver, By locator){
+    // Чисто для отладки. Удалить потом!!!!
+    private boolean areElementsPresent(WebDriver driver, By locator){
         return driver.findElements(locator).size() > 0;
-    } */
+    }
 
     // Метод для добавления 1 товара в корзину:
     public void addOneProductToBasket(){
-        System.out.println("Метод для добавления 1 товара в корзину");
+        System.out.println("\nМетод для добавления 1 товара в корзину");
         mainPage.open();
         System.out.println("Открываю первый товар из списка Most Popular");
         mainPage.firstProduct().click();
@@ -50,7 +50,7 @@ public class Application {
         System.out.print("increasedAmount = " + increasedAmount + "\n");
 
         // Для некоторых товаров необходимо указать размер:
-        productPage.selectSize();
+        productPage.selectSizeIfPresent();
         /* if (areElementsPresent(driver, By.xpath("//select[@name='options[Size]']"))) {
             // driver.findElement(By.xpath("//select[@name='options[Size]']")).sendKeys("Small");
             productPage.selectSize();
@@ -70,51 +70,36 @@ public class Application {
 
     // Метод для удаления всех товаров из корзины:
     public void deleteAllProductsFromBasket() {
-        System.out.println("Начало функции deleteAllProductsFromBasket");
+        System.out.println("\nНачало функции deleteAllProductsFromBasket");
         System.out.println("Открываю корзину");
-        // driver.findElement(By.xpath("//div[@id='cart']/a[@class='link']")).click();
         mainPage.open();
         mainPage.openBasketButton().click();
-        // int amountProductsInBasket = driver.findElements(By.xpath("//ul[@class='shortcuts']/li")).size();
+
         int amountProductsInBasket = basketPage.productsInBasket().size();
         System.out.print("Количество товаров в корзине = " + amountProductsInBasket + "\n");
 
         for (int i=1; i<=amountProductsInBasket; i++){
-            // int currentLines = driver.findElements(By.xpath("//table[@class='dataTable rounded-corners']/tbody/tr")).size();
             int oldLines = basketPage.linesInTable().size();
-            int newLines = oldLines - 1;
+            // int newLines = oldLines - 1;
             System.out.print("Текущее количество строк в таблице: " + oldLines + "\n");
 
             System.out.print("Удаляю один товар\n");
-            // driver.findElement(By.xpath("//button[@name='remove_cart_item']")).click();
             basketPage.removeProductButton().click();
 
             if (i<amountProductsInBasket){
-                System.out.print("В таблице осталось строк: " + newLines + "\n");
-                System.out.print("Жду пока количество строк в таблице обновится... ");
-                // newLines = 12; // для проверки падения теста
-                /* (new WebDriverWait(driver, 5)).until(ExpectedConditions.numberOfElementsToBe(
-                        By.xpath("//table[@class='dataTable rounded-corners']/tbody/tr"),
-                        newLines
-                )); */
+                // System.out.print("В таблице осталось строк: " + newLines + "\n");
+                System.out.println("Жду пока количество строк в таблице обновится... ");
                 basketPage.waitForTableUpdating(oldLines);
-                System.out.print("Таблица обновилась!\n");
+                // System.out.print("Таблица обновилась!\n");
             }
             else {
-                System.out.print("Жду появления сообщения о том что корзина пуста... ");
-                String expectedMessage = "There are no items in your cart.";
-                // expectedMessage = "Test Message"; // для проверки падения теста
-                /* (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElement(
-                        By.xpath("//div[@id='checkout-cart-wrapper']//em"),
-                        expectedMessage
-                )); */
-                basketPage.waitForEmptyBasketMessage(expectedMessage);
-                System.out.print("Сообщение появилось!\n");
+                // System.out.print("Жду появления сообщения о том что корзина пуста... ");
+                basketPage.waitForEmptyBasketMessage();
             }
         }
         System.out.print("Конец функции deleteAllProductsFromBasket\n");
 
         // Чисто для отладки. Удалить потом!!!!
-        // if (areElementsPresent(driver, By.xpath("//div[@id='net-takogo']"))) { System.out.println("элемент найден"); }
+        if (areElementsPresent(driver, By.xpath("//div[@id='net-takogo']"))) { System.out.println("элемент найден"); }
     }
 }

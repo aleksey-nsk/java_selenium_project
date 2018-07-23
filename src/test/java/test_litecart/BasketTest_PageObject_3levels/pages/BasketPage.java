@@ -57,10 +57,11 @@ public class BasketPage extends Page {
     }
 
     // Функция которая ждёт появления сообщения о том что корзина пуста:
-    public void waitForEmptyBasketMessage(String expectedMessage) {
+    public void waitForEmptyBasketMessage() {
+        System.out.println("Метод ожидания сообщения о том что корзина пуста");
         (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElement(
                 By.xpath("//div[@id='checkout-cart-wrapper']//em"),
-                expectedMessage
+                "There are no items in your cart."
         ));
     }
 
