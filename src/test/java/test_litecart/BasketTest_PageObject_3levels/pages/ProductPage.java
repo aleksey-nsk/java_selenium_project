@@ -19,19 +19,11 @@ public class ProductPage extends Page {
     }
 
     public WebElement amountProductsInBasket() {
-        //int currentAmount = Integer.parseInt(driver.findElement(By.xpath("//span[@class='quantity']")).getText());
         return driver.findElement(By.xpath("//span[@class='quantity']"));
-    }
-
-    public WebElement goToMainPageButton() {
-        // System.out.print("Возвращаюсь на главную страницу\n");
-        // driver.findElement(By.xpath("//li[@class='general-0']")).click();
-        return driver.findElement(By.xpath("//li[@class='general-0']"));
     }
 
     // Опишем тут еще методы:
 
-    // Для некоторых товаров необходимо указать размер:
     public void selectSizeIfPresent() {
         if (isElementPresent(driver, By.xpath("//select[@name='options[Size]']"))) {
             System.out.println("Поле Size присутствует");
@@ -50,6 +42,4 @@ public class ProductPage extends Page {
                 String.valueOf(newAmount)
         ));
     }
-
-
 }

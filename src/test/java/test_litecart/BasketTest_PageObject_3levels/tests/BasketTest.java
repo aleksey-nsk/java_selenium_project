@@ -40,7 +40,5 @@ public class BasketTest extends TestBase {
 
         app.deleteAllProductsFromBasket(); // очистим в приложении корзину
 
-        // может вставить проверку что корзина пуста ?????
-        // Assert.assertTrue(basket.size() == 0);
     }
 }

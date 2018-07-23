@@ -20,20 +20,13 @@ public class TestBase {
 
         app = new Application(); // экземпляр класса Application
 
-        /*
-        System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
-        driver = new ChromeDriver(); // инициализация драйвера
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // задал неявное ожидание
-        driver.manage().window().maximize();
-        */
     }
 
     @AfterClass
     public static void stop(){
         System.out.print("\n\n***** Внутри метода stop() *****\n\n");
 
-        // driver.quit();
-        // driver = null;
+
         app.quit();
     }
 }
