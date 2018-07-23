@@ -49,6 +49,7 @@ public class BasketPage extends Page {
 
     // Функция которая ждёт пока количество строк в таблице обновится:
     public void waitForTableUpdating(int oldAmount) {
+        System.out.println("Метод ожидания обновления таблицы товаров");
         int newAmount = oldAmount - 1;
         (new WebDriverWait(driver, 5)).until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath("//table[@class='dataTable rounded-corners']/tbody/tr"),

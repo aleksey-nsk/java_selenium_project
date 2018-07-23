@@ -44,51 +44,41 @@ public class Application {
         mainPage.open();
         System.out.println("Открываю первый товар из списка Most Popular");
         mainPage.firstProduct().click();
-        int currentAmount = Integer.parseInt(productPage.amountProductsInBasket().getText());
-        int increasedAmount = currentAmount + 1;
-        System.out.print("currentAmount = " + currentAmount + "\n");
-        System.out.print("increasedAmount = " + increasedAmount + "\n");
+        int oldAmountProductsInBasket = Integer.parseInt(productPage.amountProductsInBasket().getText());
+        // int increasedAmount = oldAmountProductsInBasket + 1;
+        // System.out.print("currentAmount = " + oldAmountProductsInBasket + "\n");
+        // System.out.print("increasedAmount = " + increasedAmount + "\n");
 
         // Для некоторых товаров необходимо указать размер:
         productPage.selectSizeIfPresent();
-        /* if (areElementsPresent(driver, By.xpath("//select[@name='options[Size]']"))) {
-            // driver.findElement(By.xpath("//select[@name='options[Size]']")).sendKeys("Small");
-            productPage.selectSize();
-        } */
 
         System.out.println("Жму кнопку для добавления в корзину");
         productPage.addToBasketButton().click();
 
         System.out.println("Жду пока счётчик товаров в корзине обновится");
-        // increasedAmount = 22; // для проверки падения теста
-        /* (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElement(
-                By.xpath("//span[@class='quantity']"),
-                String.valueOf(increasedAmount)
-        )); */
-        productPage.waitForCounterUpdating(currentAmount);
+        productPage.waitForCounterUpdating(oldAmountProductsInBasket);
     }
 
     // Метод для удаления всех товаров из корзины:
     public void deleteAllProductsFromBasket() {
-        System.out.println("\nНачало функции deleteAllProductsFromBasket");
-        System.out.println("Открываю корзину");
+        System.out.println("\nМетод удаления всех товаров из корзины");
         mainPage.open();
+        System.out.println("Жму кнопку чтобы открыть корзину");
         mainPage.openBasketButton().click();
 
         int amountProductsInBasket = basketPage.productsInBasket().size();
-        System.out.print("Количество товаров в корзине = " + amountProductsInBasket + "\n");
+        System.out.println("Начальное количество товаров в корзине = " + amountProductsInBasket);
 
         for (int i=1; i<=amountProductsInBasket; i++){
             int oldLines = basketPage.linesInTable().size();
-            // int newLines = oldLines - 1;
-            System.out.print("Текущее количество строк в таблице: " + oldLines + "\n");
+            // System.out.print("Текущее количество строк в таблице: " + oldLines + "\n");
 
-            System.out.print("Удаляю один товар\n");
+            System.out.print("Удаляю один товар. ");
             basketPage.removeProductButton().click();
 
             if (i<amountProductsInBasket){
                 // System.out.print("В таблице осталось строк: " + newLines + "\n");
-                System.out.println("Жду пока количество строк в таблице обновится... ");
+                // System.out.println("Жду пока количество строк в таблице обновится... ");
                 basketPage.waitForTableUpdating(oldLines);
                 // System.out.print("Таблица обновилась!\n");
             }
@@ -97,7 +87,7 @@ public class Application {
                 basketPage.waitForEmptyBasketMessage();
             }
         }
-        System.out.print("Конец функции deleteAllProductsFromBasket\n");
+        // System.out.print("Конец функции deleteAllProductsFromBasket\n");
 
         // Чисто для отладки. Удалить потом!!!!
         if (areElementsPresent(driver, By.xpath("//div[@id='net-takogo']"))) { System.out.println("элемент найден"); }

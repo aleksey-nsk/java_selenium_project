@@ -29,21 +29,9 @@ public class ProductPage extends Page {
         return driver.findElement(By.xpath("//li[@class='general-0']"));
     }
 
-
-
-
-
     // Опишем тут еще методы:
-    /* public void selectCountry(String country) {
-        driver.findElement(By.xpath("//span[@class='select2-selection__arrow']")).click();
-        driver.findElement(By.xpath("//input[@class='select2-search__field']")).sendKeys(country + Keys.ENTER);
-    } */
-    /*
+
     // Для некоторых товаров необходимо указать размер:
-        if (areElementsPresent(driver, By.xpath("//select[@name='options[Size]']"))) {
-            driver.findElement(By.xpath("//select[@name='options[Size]']")).sendKeys("Small");
-        }
-     */
     public void selectSizeIfPresent() {
         if (isElementPresent(driver, By.xpath("//select[@name='options[Size]']"))) {
             System.out.println("Поле Size присутствует");
@@ -54,22 +42,6 @@ public class ProductPage extends Page {
         }
     }
 
-    /*
-    public void selectZone(String zone) {
-        wait.until((WebDriver d) -> d.findElement(
-                By.cssSelector(String.format("select[name=zone_code] option[value=%s]", zone))));
-        new Select(driver.findElement(By.name("select[name=zone_code]"))).selectByValue(zone);
-    }
-    */
-    /*
-    System.out.print("Жду пока счётчик товаров в корзине обновится... ");
-        // increasedAmount = 22; // для проверки падения теста
-        (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElement(
-                By.xpath("//span[@class='quantity']"),
-                String.valueOf(increasedAmount)
-        ));
-        System.out.print("Счётчик обновлён!\n");
-     */
     public void waitForCounterUpdating(int oldAmount) {
         System.out.println("Метод ожидания обновления счётчика");
         int newAmount = oldAmount + 1;
