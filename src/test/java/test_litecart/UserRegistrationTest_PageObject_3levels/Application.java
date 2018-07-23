@@ -48,31 +48,21 @@ public class Application {
 
         // Заиспользуем класс RegistrationPage (то есть страницу объект registrationPage):
         registrationPage.open(); // открываю страницу регистрации (Create Account)
-        // Заполняю форму регистрации:
-        registrationPage.firstnameInput().sendKeys(customer.getFirstname());
-        registrationPage.lastnameInput().sendKeys(customer.getLastname());
-        registrationPage.adressInput().sendKeys(customer.getAddress());
-        registrationPage.postcodeInput().sendKeys(customer.getPostcode());
-        registrationPage.cityInput().sendKeys(customer.getCity());
-
-        // Не все элементы простые. Есть более сложные (2 выпадающих меню):
-        /*
-        driver.findElement(By.xpath("//span[@class='select2-selection__arrow']")).click();
-        driver.findElement(By.xpath("//input[@class='select2-search__field']")).sendKeys(customer.getCountry() + Keys.ENTER);
-        driver.findElement(By.xpath("//select[@name='zone_code']")).click();
-        driver.findElement(By.xpath(String.format("//select[@name='zone_code']/option[@value='%s']", customer.getZone()))).click();
-        */
-        // Вместо этого сделаем вспомогательные методы selectCountry и selectZone:
+        // Заполняю форму регистрации: (теперь работаем с полями а не с методами)
+        registrationPage.firstnameInput.sendKeys(customer.getFirstname());
+        registrationPage.lastnameInput.sendKeys(customer.getLastname());
+        registrationPage.adressInput.sendKeys(customer.getAddress());
+        registrationPage.postcodeInput.sendKeys(customer.getPostcode());
+        registrationPage.cityInput.sendKeys(customer.getCity());
         registrationPage.selectCountry(customer.getCountry());
         registrationPage.selectZone(customer.getZone());
-
-        registrationPage.emailInput().sendKeys(customer.getEmail());
-        registrationPage.phoneInput().sendKeys(customer.getPhone());
-        registrationPage.passwordInput().sendKeys(customer.getPassword());
-        registrationPage.confirmedPasswordInput().sendKeys(customer.getPassword());
+        registrationPage.emailInput.sendKeys(customer.getEmail());
+        registrationPage.phoneInput.sendKeys(customer.getPhone());
+        registrationPage.passwordInput.sendKeys(customer.getPassword());
+        registrationPage.confirmedPasswordInput.sendKeys(customer.getPassword());
         // System.out.print("Нажимаю кнопку Create Account...\n");
         // Нажимаю кнопку Create Account
-        registrationPage.createAccountButton().click();
+        registrationPage.createAccountButton.click();
 
 
 
