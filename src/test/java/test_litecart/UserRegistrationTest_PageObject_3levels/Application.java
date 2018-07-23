@@ -45,26 +45,6 @@ public class Application {
     public void registerNewCustomer(Customer customer) {
         // Регистрируем нового клиента:
         // (МОЖЕТ ПЕРЕД РЕГИСТРАЦИЕЙ ВЫЙТИ ИЗ АДМИНКИ ?????????)
-        /* System.out.print("Открываю страницу Create Account...\n");
-        driver.get("http://localhost/litecart/en/create_account");
-        System.out.print("Заполняю форму регистрации...\n");
-        //driver.findElement(By.xpath("//input[@name='firstname']")).sendKeys(customer.getFirstname());
-        //driver.findElement(By.xpath("//input[@name='lastname']")).sendKeys(customer.getLastname());
-        //driver.findElement(By.xpath("//input[@name='address1']")).sendKeys(customer.getAddress());
-        //driver.findElement(By.xpath("//input[@name='postcode']")).sendKeys(customer.getPostcode());
-        //driver.findElement(By.xpath("//input[@name='city']")).sendKeys(customer.getCity());
-
-        driver.findElement(By.xpath("//span[@class='select2-selection__arrow']")).click();
-        driver.findElement(By.xpath("//input[@class='select2-search__field']")).sendKeys(customer.getCountry() + Keys.ENTER);
-        driver.findElement(By.xpath("//select[@name='zone_code']")).click();
-        driver.findElement(By.xpath(String.format("//select[@name='zone_code']/option[@value='%s']", customer.getZone()))).click();
-
-        //driver.findElement(By.xpath("//input[@name='email']")).sendKeys(customer.getEmail());
-        //driver.findElement(By.xpath("//input[@name='phone']")).sendKeys(customer.getPhone());
-        //driver.findElement(By.xpath("//input[@name='password']")).sendKeys(customer.getPassword());
-        //driver.findElement(By.xpath("//input[@name='confirmed_password']")).sendKeys(customer.getPassword());
-        System.out.print("Нажимаю кнопку Create Account...\n");
-        driver.findElement(By.xpath("//button[@name='create_account']")).click(); */
 
         // Заиспользуем класс RegistrationPage (то есть страницу объект registrationPage):
         registrationPage.open(); // открываю страницу регистрации (Create Account)
@@ -76,10 +56,15 @@ public class Application {
         registrationPage.cityInput().sendKeys(customer.getCity());
 
         // Не все элементы простые. Есть более сложные (2 выпадающих меню):
+        /*
         driver.findElement(By.xpath("//span[@class='select2-selection__arrow']")).click();
         driver.findElement(By.xpath("//input[@class='select2-search__field']")).sendKeys(customer.getCountry() + Keys.ENTER);
         driver.findElement(By.xpath("//select[@name='zone_code']")).click();
         driver.findElement(By.xpath(String.format("//select[@name='zone_code']/option[@value='%s']", customer.getZone()))).click();
+        */
+        // Вместо этого сделаем вспомогательные методы selectCountry и selectZone:
+        registrationPage.selectCountry(customer.getCountry());
+        registrationPage.selectZone(customer.getZone());
 
         registrationPage.emailInput().sendKeys(customer.getEmail());
         registrationPage.phoneInput().sendKeys(customer.getPhone());
