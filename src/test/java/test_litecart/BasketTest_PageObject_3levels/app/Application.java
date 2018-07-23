@@ -8,8 +8,8 @@ import test_litecart.BasketTest_PageObject_3levels.pages.MainPage;
 import test_litecart.BasketTest_PageObject_3levels.pages.ProductPage;
 import java.util.concurrent.TimeUnit;
 
-// Все технические подробности спрятаны внутрь класса Application.
-// В классе Application создаём и используем драйвер.
+// Все технические подробности спрятаны внутрь класса Application
+// В классе Application создаём и используем драйвер
 public class Application {
 
     private WebDriver driver;
@@ -59,6 +59,7 @@ public class Application {
         mainPage.openBasketButton().click();
         int amountProductsInBasket = basketPage.productsInBasket().size();
         System.out.println("Начальное количество товаров в корзине = " + amountProductsInBasket);
+
         for (int i=1; i<=amountProductsInBasket; i++){
             int oldLines = basketPage.linesInTable().size();
             System.out.print("Удаляю один товар. ");
