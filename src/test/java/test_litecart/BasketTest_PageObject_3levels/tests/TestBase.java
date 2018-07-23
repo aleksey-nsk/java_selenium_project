@@ -8,6 +8,7 @@ import test_litecart.BasketTest_PageObject_3levels.app.Application;
 
 import java.util.concurrent.TimeUnit;
 
+// Базовый класс для тестов:
 public class TestBase {
 
     // public static WebDriver driver;
@@ -17,7 +18,7 @@ public class TestBase {
     public static void start(){
         System.out.print("\n\n***** Внутри метода start() *****\n\n");
 
-        app = new Application();
+        app = new Application(); // экземпляр класса Application
 
         /*
         System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
