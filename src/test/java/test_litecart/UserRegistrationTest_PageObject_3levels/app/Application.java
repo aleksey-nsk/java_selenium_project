@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 // создаётся драйвер, и здесь же он используется.
 public class Application {
 
-    private WebDriverWait wait;
+    // private WebDriverWait wait;
     private WebDriver driver;
 
     private RegistrationPage registrationPage;
@@ -29,9 +29,9 @@ public class Application {
     public Application() {
         System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
         driver = new ChromeDriver(); // инициализация драйвера
-        wait = new WebDriverWait(driver, 10);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // задал неявное ожидание
-        driver.manage().window().maximize();
+        // wait = new WebDriverWait(driver, 10);
+        // driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // задал неявное ожидание
+        // driver.manage().window().maximize();
 
         registrationPage = new RegistrationPage(driver);
         adminPanelLoginPage = new AdminPanelLoginPage(driver);
