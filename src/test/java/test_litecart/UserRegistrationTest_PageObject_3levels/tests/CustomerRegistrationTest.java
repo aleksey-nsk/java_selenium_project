@@ -1,21 +1,13 @@
-package test_litecart.UserRegistrationTest_PageObject_3levels;
+package test_litecart.UserRegistrationTest_PageObject_3levels.tests;
 
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import test_litecart.UserRegistrationTest_PageObject_3levels.model.Customer;
 
-import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toSet;
 
 @RunWith(DataProviderRunner.class)
 public class CustomerRegistrationTest extends TestBase {

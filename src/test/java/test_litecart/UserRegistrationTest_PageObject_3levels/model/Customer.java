@@ -1,4 +1,4 @@
-package test_litecart.UserRegistrationTest_PageObject_3levels;
+package test_litecart.UserRegistrationTest_PageObject_3levels.model;
 
 public class Customer {
 

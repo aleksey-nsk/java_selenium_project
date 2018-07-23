@@ -1,12 +1,7 @@
-package test_litecart.UserRegistrationTest_PageObject_3levels;
+package test_litecart.UserRegistrationTest_PageObject_3levels.tests;
 
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.concurrent.TimeUnit;
+import test_litecart.UserRegistrationTest_PageObject_3levels.app.Application;
 
 // Базовый класс для тестов:
 public class TestBase {
