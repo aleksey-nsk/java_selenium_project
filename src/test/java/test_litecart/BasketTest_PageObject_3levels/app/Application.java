@@ -43,11 +43,11 @@ public class Application {
         System.out.println("\nМетод для добавления 1 товара в корзину");
         mainPage.open();
         System.out.println("Открываю первый товар из списка Most Popular");
-        mainPage.firstProduct().click();
-        int oldAmountProductsInBasket = Integer.parseInt(productPage.amountProductsInBasket().getText());
-        productPage.selectSizeIfPresent(); // для некоторых товаров необходимо указать размер
+        mainPage.firstProduct.click();
+        int oldAmountProductsInBasket = Integer.parseInt(productPage.amountProductsInBasket.getText());
+        productPage.selectSizeIfPresent();
         System.out.println("Жму кнопку для добавления в корзину");
-        productPage.addToBasketButton().click();
+        productPage.addToBasketButton.click();
         System.out.println("Жду пока счётчик товаров в корзине обновится");
         productPage.waitForCounterUpdating(oldAmountProductsInBasket);
     }
@@ -56,14 +56,14 @@ public class Application {
         System.out.println("\nМетод удаления всех товаров из корзины");
         mainPage.open();
         System.out.println("Жму кнопку чтобы открыть корзину");
-        mainPage.openBasketButton().click();
-        int amountProductsInBasket = basketPage.productsInBasket().size();
+        mainPage.openBasketButton.click();
+        int amountProductsInBasket = basketPage.productsInBasket.size();
         System.out.println("Начальное количество товаров в корзине = " + amountProductsInBasket);
 
         for (int i=1; i<=amountProductsInBasket; i++){
-            int oldLines = basketPage.linesInTable().size();
+            int oldLines = basketPage.linesInTable.size();
             System.out.print("Удаляю один товар. ");
-            basketPage.removeProductButton().click();
+            basketPage.removeProductButton.click();
             if (i<amountProductsInBasket){
                 basketPage.waitForTableUpdating(oldLines);
             }

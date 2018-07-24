@@ -3,6 +3,8 @@ package test_litecart.BasketTest_PageObject_3levels.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -10,17 +12,24 @@ public class ProductPage extends Page {
 
     public ProductPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
+    /*
     // Методы котрые находят и возвращают элементы
     // расположенные на этой странице:
     public WebElement addToBasketButton() {
         return driver.findElement(By.xpath("//button[@name='add_cart_product']"));
     }
-
     public WebElement amountProductsInBasket() {
         return driver.findElement(By.xpath("//span[@class='quantity']"));
     }
+    */
+    @FindBy(xpath = "//button[@name='add_cart_product']")
+    public WebElement addToBasketButton;
+
+    @FindBy(xpath = "//span[@class='quantity']")
+    public WebElement amountProductsInBasket;
 
     // Опишем тут еще методы:
 
