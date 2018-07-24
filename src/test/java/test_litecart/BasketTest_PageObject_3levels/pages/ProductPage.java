@@ -15,23 +15,11 @@ public class ProductPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    /*
-    // Методы котрые находят и возвращают элементы
-    // расположенные на этой странице:
-    public WebElement addToBasketButton() {
-        return driver.findElement(By.xpath("//button[@name='add_cart_product']"));
-    }
-    public WebElement amountProductsInBasket() {
-        return driver.findElement(By.xpath("//span[@class='quantity']"));
-    }
-    */
     @FindBy(xpath = "//button[@name='add_cart_product']")
     public WebElement addToBasketButton;
 
     @FindBy(xpath = "//span[@class='quantity']")
     public WebElement amountProductsInBasket;
-
-    // Опишем тут еще методы:
 
     public void selectSizeIfPresent() {
         if (isElementPresent(driver, By.xpath("//select[@name='options[Size]']"))) {

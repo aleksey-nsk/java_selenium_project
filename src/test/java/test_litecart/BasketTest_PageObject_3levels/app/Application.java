@@ -1,6 +1,5 @@
 package test_litecart.BasketTest_PageObject_3levels.app;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import test_litecart.BasketTest_PageObject_3levels.pages.BasketPage;
@@ -8,8 +7,6 @@ import test_litecart.BasketTest_PageObject_3levels.pages.MainPage;
 import test_litecart.BasketTest_PageObject_3levels.pages.ProductPage;
 import java.util.concurrent.TimeUnit;
 
-// Все технические подробности спрятаны внутрь класса Application
-// В классе Application создаём и используем драйвер
 public class Application {
 
     private WebDriver driver;
@@ -32,11 +29,6 @@ public class Application {
     public void quit() {
         driver.quit();
         driver = null;
-    }
-
-    // Чисто для отладки. Удалить потом!!!!
-    private boolean areElementsPresent(WebDriver driver, By locator){
-        return driver.findElements(locator).size() > 0;
     }
 
     public void addOneProductToBasket(){
@@ -71,7 +63,5 @@ public class Application {
                 basketPage.waitForEmptyBasketMessage();
             }
         }
-        // Чисто для отладки. Удалить потом!!!!
-        if (areElementsPresent(driver, By.xpath("//div[@id='net-takogo']"))) { System.out.println("элемент найден"); }
     }
 }

@@ -16,19 +16,6 @@ public class BasketPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    /*
-    // Методы котрые находят и возвращают элементы
-    // расположенные на этой странице:
-    public WebElement removeProductButton() {
-        return driver.findElement(By.xpath("//button[@name='remove_cart_item']"));
-    }
-    public List<WebElement> productsInBasket() {
-        return driver.findElements(By.xpath("//ul[@class='shortcuts']/li"));
-    }
-    public List<WebElement> linesInTable() {
-        return driver.findElements(By.xpath("//table[@class='dataTable rounded-corners']/tbody/tr"));
-    }
-    */
     @FindBy(xpath = "//button[@name='remove_cart_item']")
     public WebElement removeProductButton;
 
@@ -37,19 +24,6 @@ public class BasketPage extends Page {
 
     @FindBy(xpath = "//table[@class='dataTable rounded-corners']/tbody/tr")
     public List<WebElement> linesInTable;
-
-    // Опишем тут еще методы:
-
-    // Количество товаров в корзине
-    /* public int amountProductsInBasket() {
-        return driver.findElements(By.xpath("//ul[@class='shortcuts']/li")).size();
-    } */
-
-
-    // Текущее количество строк в таблице
-    /* public int currentLines() {
-        return driver.findElements(By.xpath("//table[@class='dataTable rounded-corners']/tbody/tr")).size();
-    } */
 
     public void waitForTableUpdating(int oldAmount) {
         System.out.println("Метод ожидания обновления таблицы товаров");
