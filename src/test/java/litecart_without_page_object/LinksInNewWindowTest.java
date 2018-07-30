@@ -19,7 +19,7 @@
 открывается не мгновенно, поэтому требуется ожидание открытия окна.
 */
 
-package litecart_old;
+package litecart_without_page_object;
 
 import org.junit.AfterClass;
 import org.junit.Assert;

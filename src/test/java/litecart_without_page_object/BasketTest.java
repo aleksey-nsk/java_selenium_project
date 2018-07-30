@@ -16,7 +16,7 @@
 каждого удаления подождать, пока внизу обновится таблица.
 */
 
-package litecart_old;
+package litecart_without_page_object;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

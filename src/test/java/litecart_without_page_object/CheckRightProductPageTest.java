@@ -20,7 +20,7 @@
 проверить во всех трёх ключевых браузерах (Chrome, Firefox, IE).
 */
 
-package litecart_old;
+package litecart_without_page_object;
 
 import org.junit.AfterClass;
 import org.junit.Assert;

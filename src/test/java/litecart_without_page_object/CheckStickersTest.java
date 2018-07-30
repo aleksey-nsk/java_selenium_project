@@ -10,7 +10,7 @@
 - проверить что у каждого товара имеется ровно 1 стикер
 */
 
-package litecart_old;
+package litecart_without_page_object;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
