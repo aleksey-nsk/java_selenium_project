@@ -17,24 +17,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class OpenUrlTest {
-    private static WebDriver driver;
+  private static WebDriver driver;
 
-    @BeforeClass
-    public static void start(){
-        System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer_Win32_3.12.0.exe");
-        driver = new InternetExplorerDriver(); // инициализация драйвера
-        driver.manage().window().maximize();
-    }
+  @BeforeClass
+  public static void start() {
+    System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer_Win32_3.12.0.exe");
+    driver = new InternetExplorerDriver(); // инициализация драйвера
+    driver.manage().window().maximize();
+  }
 
-    @Test
-    public void action(){
-        driver.get("https://mail.ngs.ru/");
-        (new WebDriverWait(driver, 5)).until(ExpectedConditions.titleIs("ГОРОДСКАЯ ПОЧТОВАЯ СЛУЖБА"));
-    }
+  @Test
+  public void action() {
+    driver.get("https://mail.ngs.ru/");
+    (new WebDriverWait(driver, 5)).until(ExpectedConditions.titleIs("ГОРОДСКАЯ ПОЧТОВАЯ СЛУЖБА"));
+  }
 
-    @AfterClass
-    public static void stop(){
-        driver.quit();
-        driver = null;
-    }
+  @AfterClass
+  public static void stop() {
+    driver.quit();
+    driver = null;
+  }
 }

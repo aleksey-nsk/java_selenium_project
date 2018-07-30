@@ -9,28 +9,28 @@ import org.openqa.selenium.support.PageFactory;
 // находится почтовый ящик пользователя:
 public class MailBoxPage {
 
-    // Конструктор класса:
-    public MailBoxPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-    }
+  // Конструктор класса:
+  public MailBoxPage(WebDriver driver) {
+    PageFactory.initElements(driver, this);
+    this.driver = driver;
+  }
 
-    public WebDriver driver;
+  public WebDriver driver;
 
-    @FindBy(xpath = "//td[@id='td_header_right1']")
-    private WebElement userProfile;
+  @FindBy(xpath = "//td[@id='td_header_right1']")
+  private WebElement userProfile;
 
-    @FindBy(xpath = "//a[@href='logout']")
-    private WebElement buttonLogout;
+  @FindBy(xpath = "//a[@href='logout']")
+  private WebElement buttonLogout;
 
-    // Теперь опишем методы:
+  // Теперь опишем методы:
 
-    public String getUserMail() {
-        String userMail = userProfile.getText();
-        return userMail;
-    }
+  public String getUserMail() {
+    String userMail = userProfile.getText();
+    return userMail;
+  }
 
-    public void userLogout() {
-        buttonLogout.click();
-    }
+  public void userLogout() {
+    buttonLogout.click();
+  }
 }

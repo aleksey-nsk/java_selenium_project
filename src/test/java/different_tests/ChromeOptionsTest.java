@@ -21,27 +21,27 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ChromeOptionsTest {
-    private static WebDriver driver;
+  private static WebDriver driver;
 
-    @BeforeClass
-    public static void start(){
-        System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
-        ChromeOptions options = new ChromeOptions();
-        // options.addArguments("start-fullscreen"); // полноэкранный режим
-        options.addArguments("start-maximized");
-        options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
-        driver = new ChromeDriver(options);
-    }
+  @BeforeClass
+  public static void start() {
+    System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
+    ChromeOptions options = new ChromeOptions();
+    // options.addArguments("start-fullscreen"); // полноэкранный режим
+    options.addArguments("start-maximized");
+    options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+    driver = new ChromeDriver(options);
+  }
 
-    @Test
-    public void action(){
-        driver.get("https://yandex.ru/");
-        (new WebDriverWait(driver, 5)).until(ExpectedConditions.titleIs("Яндекс"));
-    }
+  @Test
+  public void action() {
+    driver.get("https://yandex.ru/");
+    (new WebDriverWait(driver, 5)).until(ExpectedConditions.titleIs("Яндекс"));
+  }
 
-    @AfterClass
-    public static void stop(){
-        driver.quit();
-        driver = null;
-    }
+  @AfterClass
+  public static void stop() {
+    driver.quit();
+    driver = null;
+  }
 }

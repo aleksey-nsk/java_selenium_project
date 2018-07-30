@@ -13,17 +13,17 @@ import org.openqa.selenium.support.PageFactory;
 // (а как выглядит использование этого класса - см. в класс Application)
 public class RegistrationPage extends Page {
 
-    public RegistrationPage(WebDriver driver) {
-        super(driver);
+  public RegistrationPage(WebDriver driver) {
+    super(driver);
 
-        // Дописываю сюда PageFactory:
-        PageFactory.initElements(driver, this);
-    }
+    // Дописываю сюда PageFactory:
+    PageFactory.initElements(driver, this);
+  }
 
-    // Метод open() открывает эту страницу регистрации:
-    public void open() {
-        driver.get("http://localhost/litecart/en/create_account");
-    }
+  // Метод open() открывает эту страницу регистрации:
+  public void open() {
+    driver.get("http://localhost/litecart/en/create_account");
+  }
 
     /*
     // Методы котрые находят и возвращают элементы
@@ -60,49 +60,49 @@ public class RegistrationPage extends Page {
     }
     */
 
-    // Теперь вместо методов создадим поля, перед которыми
-    // стоит специальная аннотация указывающая локатор:
+  // Теперь вместо методов создадим поля, перед которыми
+  // стоит специальная аннотация указывающая локатор:
 
-    @FindBy(name="firstname")
-    public WebElement firstnameInput;
+  @FindBy(name = "firstname")
+  public WebElement firstnameInput;
 
-    @FindBy(name="lastname")
-    public WebElement lastnameInput;
+  @FindBy(name = "lastname")
+  public WebElement lastnameInput;
 
-    @FindBy(name="address1")
-    public WebElement adressInput;
+  @FindBy(name = "address1")
+  public WebElement adressInput;
 
-    @FindBy(name="postcode")
-    public WebElement postcodeInput;
+  @FindBy(name = "postcode")
+  public WebElement postcodeInput;
 
-    @FindBy(name="city")
-    public WebElement cityInput;
+  @FindBy(name = "city")
+  public WebElement cityInput;
 
-    @FindBy(name="email")
-    public WebElement emailInput;
+  @FindBy(name = "email")
+  public WebElement emailInput;
 
-    @FindBy(name="phone")
-    public WebElement phoneInput;
+  @FindBy(name = "phone")
+  public WebElement phoneInput;
 
-    @FindBy(name="password")
-    public WebElement passwordInput;
+  @FindBy(name = "password")
+  public WebElement passwordInput;
 
-    @FindBy(name="confirmed_password")
-    public WebElement confirmedPasswordInput;
+  @FindBy(name = "confirmed_password")
+  public WebElement confirmedPasswordInput;
 
-    @FindBy(name="create_account")
-    public WebElement createAccountButton;
+  @FindBy(name = "create_account")
+  public WebElement createAccountButton;
 
-    // Опишем тут методы selectCountry и selectZone:
+  // Опишем тут методы selectCountry и selectZone:
 
-    public void selectCountry(String country) {
-        driver.findElement(By.xpath("//span[@class='select2-selection__arrow']")).click();
-        driver.findElement(By.xpath("//input[@class='select2-search__field']")).sendKeys(country + Keys.ENTER);
-    }
+  public void selectCountry(String country) {
+    driver.findElement(By.xpath("//span[@class='select2-selection__arrow']")).click();
+    driver.findElement(By.xpath("//input[@class='select2-search__field']")).sendKeys(country + Keys.ENTER);
+  }
 
-    public void selectZone(String zone) {
-        driver.findElement(By.xpath("//select[@name='zone_code']")).click();
-        driver.findElement(By.xpath(String.format("//select[@name='zone_code']/option[@value='%s']", zone))).click();
-    }
+  public void selectZone(String zone) {
+    driver.findElement(By.xpath("//select[@name='zone_code']")).click();
+    driver.findElement(By.xpath(String.format("//select[@name='zone_code']/option[@value='%s']", zone))).click();
+  }
 
 }

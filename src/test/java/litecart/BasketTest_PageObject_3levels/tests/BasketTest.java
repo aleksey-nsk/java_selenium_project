@@ -29,14 +29,14 @@ import org.junit.Test;
 
 public class BasketTest extends TestBase {
 
-    @Test
-    public void action(){
-        System.out.print("\n\n***** Внутри метода action() *****\n\n");
+  @Test
+  public void action() {
+    System.out.print("\n\n***** Внутри метода action() *****\n\n");
 
-        app.addOneProductToBasket();
-        app.addOneProductToBasket();
-        app.addOneProductToBasket();
+    app.addOneProductToBasket();
+    app.addOneProductToBasket();
+    app.addOneProductToBasket();
 
-        app.deleteAllProductsFromBasket();
-    }
+    app.deleteAllProductsFromBasket();
+  }
 }
