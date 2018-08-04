@@ -1,4 +1,4 @@
-package litecart_without_page_object;
+package litecart;
 
 import org.junit.Assert;
 import org.junit.Test;
