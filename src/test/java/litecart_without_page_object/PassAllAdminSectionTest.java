@@ -1,84 +1,39 @@
-/*
-Тест, который проходит по всем разделам админки. Описание теста:
-- войти в панель администратора
-- прокликнуть последовательно все пункты меню слева (включая вложенные пункты)
-- для каждой страницы проверить наличие заголовка (то есть элемента с тегом h1)
-*/
-
 package litecart_without_page_object;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import java.util.concurrent.TimeUnit;
-
-public class PassAllAdminSectionTest {
-  private static WebDriver driver;
-
-  private boolean areElementsPresent(WebDriver driver, By locator) {
-    return driver.findElements(locator).size() > 0;
-  }
-
-  @BeforeClass
-  public static void start() {
-    System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer_Win32_3.12.0.exe");
-    driver = new InternetExplorerDriver(); // инициализация драйвера
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // задал неявное ожидание
-    driver.manage().window().maximize();
-  }
+public class PassAllAdminSectionTest extends TestBase {
 
   @Test
-  public void action() {
-    // --------------------------------------
-    // Захожу в панель администратора
-    // --------------------------------------
-    driver.get("http://localhost/litecart/admin/");
-    driver.findElement(By.xpath("//input[@name='username']")).sendKeys("admin");
-    driver.findElement(By.xpath("//input[@name='password']")).sendKeys("admin");
-    driver.findElement(By.xpath("//button[@name='login']")).click();
-    String accountUser = driver.findElement(By.xpath("//div[contains(@class,'notice success')]")).getText();
-    Assert.assertEquals("You are now logged in as admin", accountUser);
+  public void test007() {
+    System.out.print("\n\n***** Внутри метода test007() *****\n\n");
 
-    // --------------------------------------
-    // Прокликнуть все пункты меню/подменю
-    // и осуществить необходимые проверки
-    // --------------------------------------
+    goToAdminPanel();
+
     int amountMainMenuItems = driver.findElements(By.xpath("//ul[@id='box-apps-menu']/li")).size();
-    for (int i = 0; i < amountMainMenuItems; i++) {
-      int iIncrement = i + 1;
-      driver.findElement(By.xpath("//ul[@id='box-apps-menu']/li[" + iIncrement + "]")).click();
-      System.out.println("\n\nПункт главного меню #" + iIncrement);
+    System.out.println("Количество пунктов в главном меню = " + amountMainMenuItems);
 
-      if (areElementsPresent(driver, By.xpath("//ul[@id='box-apps-menu']/li[@class='selected']/ul[@class='docs']"))) {
-        int amountSubMenuItems = driver.findElements(By.xpath("//ul[@id='box-apps-menu']/li[@class='selected']/ul[@class='docs']/li")).size();
-        for (int j = 0; j < amountSubMenuItems; j++) {
-          int jIncrement = j + 1;
-          driver.findElement(By.xpath("//ul[@id='box-apps-menu']/li[@class='selected']/ul[@class='docs']/li[" + jIncrement + "]")).click();
-          System.out.print(" подменю-" + iIncrement + "." + jIncrement);
+    for (int i = 1; i <= amountMainMenuItems; i++) {
+      // if (i>4 && i<15) { continue; } // использую для отладки
+      System.out.println("Нажимаю пункт главного меню #" + i);
+      driver.findElement(By.xpath("//ul[@id='box-apps-menu']/li["+i+"]")).click();
 
-          // Проверить наличие заголовка (то есть элемента с тегом h1):
-          Assert.assertTrue(areElementsPresent(driver, By.xpath("//td[@id='content']/h1")));
+      if (isElementPresent(driver, By.xpath("//li[@class='selected']/ul[@class='docs']"))) {
+        int amountSubMenuItems = driver.findElements(By.xpath("//li[@class='selected']/ul[@class='docs']/li")).size();
+        System.out.println("  количество пунктов подменю = " + amountSubMenuItems);
+        for (int j = 1; j <= amountSubMenuItems; j++) {
+          driver.findElement(By.xpath("//li[@class='selected']/ul[@class='docs']/li["+j+"]")).click();
+          System.out.println("  подменю" + i + "." + j + " - проверяю наличие заголовка");
+          Assert.assertTrue(isElementPresent(driver, By.xpath("//td[@id='content']/h1")));
         }
       } else {
-        // Проверить наличие заголовка (то есть элемента с тегом h1):
-        Assert.assertTrue(areElementsPresent(driver, By.xpath("//td[@id='content']/h1")));
+        System.out.println("  подменю отсутствует. Проверяю наличие заголовка в пункте главного меню");
+        Assert.assertTrue(isElementPresent(driver, By.xpath("//td[@id='content']/h1")));
       }
     }
 
-    // --------------------------------------
-    // Выхожу из панели администрирования
-    // --------------------------------------
-    driver.findElement(By.xpath("//a[@title='Logout']")).click();
-  }
-
-  @AfterClass
-  public static void stop() {
-    driver.quit();
-    driver = null;
+    exitAdminPanel();
   }
 }
