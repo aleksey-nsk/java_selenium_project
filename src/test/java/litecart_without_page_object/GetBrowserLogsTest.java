@@ -19,7 +19,7 @@ public class GetBrowserLogsTest extends TestBase {
     goToAdminPanel();
 
     System.out.println("Открываю категорию которая содержит товары");
-    driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1");
+    driver.get("http://localhost/litecart_using_page_object/admin/?app=catalog&doc=catalog&category_id=1");
     int amountOfLines = driver.findElements(By.xpath("//form[@name='catalog_form']//tbody/tr")).size();
     int amountOfProducts = amountOfLines - 5;
     System.out.print("Количество товаров = " + amountOfProducts + "\n\n");

@@ -19,7 +19,7 @@ public class TestBase {
 
   protected void goToAdminPanel() {
     System.out.println("Метод для входа в панель админа");
-    driver.get("http://localhost/litecart/admin/");
+    driver.get("http://localhost/litecart_using_page_object/admin/");
     driver.findElement(By.xpath("//input[@name='username']")).sendKeys("admin");
     driver.findElement(By.xpath("//input[@name='password']")).sendKeys("admin");
     driver.findElement(By.xpath("//button[@name='login']")).click();

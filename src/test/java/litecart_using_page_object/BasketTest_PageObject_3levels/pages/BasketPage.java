@@ -1,4 +1,4 @@
-package litecart.BasketTest_PageObject_3levels.pages;
+package litecart_using_page_object.BasketTest_PageObject_3levels.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

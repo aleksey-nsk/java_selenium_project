@@ -1,4 +1,4 @@
-package litecart.UserRegistrationTest_PageObject_3levels.pages;
+package litecart_using_page_object.UserRegistrationTest_PageObject_3levels.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -22,7 +22,7 @@ public class RegistrationPage extends Page {
 
   // Метод open() открывает эту страницу регистрации:
   public void open() {
-    driver.get("http://localhost/litecart/en/create_account");
+    driver.get("http://localhost/litecart_using_page_object/en/create_account");
   }
 
     /*

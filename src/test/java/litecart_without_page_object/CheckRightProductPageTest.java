@@ -12,7 +12,7 @@ public class CheckRightProductPageTest extends TestBase {
   public void test010() {
     System.out.print("\n\n***** Внутри метода test010() *****\n\n");
 
-    driver.get("http://localhost/litecart/en/");
+    driver.get("http://localhost/litecart_using_page_object/en/");
     WebElement firstProduct = driver.findElements(By.xpath("//div[@id='box-campaigns']//ul[@class='listing-wrapper products']/li")).get(0);
     System.out.println("Зашёл на главную страницу и выбрал первый товар в блоке Campaigns");
 

@@ -1,4 +1,4 @@
-package litecart.UserRegistrationTest_PageObject_3levels.pages;
+package litecart_using_page_object.UserRegistrationTest_PageObject_3levels.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;

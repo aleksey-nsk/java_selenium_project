@@ -1,4 +1,4 @@
-package litecart.UserRegistrationTest_PageObject_3levels.pages;
+package litecart_using_page_object.UserRegistrationTest_PageObject_3levels.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +22,7 @@ public class CustomerListPage extends Page {
 
   public CustomerListPage open() {
     // После входа в админскую панель открываем страницу со списком клиентов:
-    driver.get("http://localhost/litecart/admin/?app=customers&doc=customers");
+    driver.get("http://localhost/litecart_using_page_object/admin/?app=customers&doc=customers");
     return this;
   }
 

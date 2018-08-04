@@ -1,4 +1,4 @@
-package litecart.BasketTest_PageObject_3levels.pages;
+package litecart_using_page_object.BasketTest_PageObject_3levels.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +14,7 @@ public class MainPage extends Page {
 
   public void open() {
     System.out.println("Метод для открытия главной страницы магазина");
-    driver.get("http://localhost/litecart/en/");
+    driver.get("http://localhost/litecart_using_page_object/en/");
   }
 
   @FindBy(xpath = "//div[@id='cart']/a[@class='link']")

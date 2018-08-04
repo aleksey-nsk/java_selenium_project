@@ -1,7 +1,7 @@
-package litecart.UserRegistrationTest_PageObject_3levels.tests;
+package litecart_using_page_object.UserRegistrationTest_PageObject_3levels.tests;
 
 import com.tngtech.java.junit.dataprovider.DataProvider;
-import litecart.UserRegistrationTest_PageObject_3levels.model.Customer;
+import litecart_using_page_object.UserRegistrationTest_PageObject_3levels.model.Customer;
 // import ru.stqa.training.selenium.model.Customer;
 
 public class DataProviders {
