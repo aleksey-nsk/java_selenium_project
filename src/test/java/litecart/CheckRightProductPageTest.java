@@ -12,7 +12,7 @@ public class CheckRightProductPageTest extends TestBase {
   public void test010() {
     System.out.print("\n\n***** Внутри метода test010() *****\n\n");
 
-    driver.get("http://localhost/litecart_using_page_object/en/");
+    driver.get("http://localhost/litecart/en/");
     WebElement firstProduct = driver.findElements(By.xpath("//div[@id='box-campaigns']//ul[@class='listing-wrapper products']/li")).get(0);
     System.out.println("Зашёл на главную страницу и выбрал первый товар в блоке Campaigns");
 
@@ -62,7 +62,7 @@ public class CheckRightProductPageTest extends TestBase {
     String sizeOfRegularPrice = regularPrice.getCssValue("font-size");
     String sizeOfCampaignPrice = campaignPrice.getCssValue("font-size");
     // sizeOfRegularPrice = "23px"; // для проверки падения теста
-    System.out.println("  sizeOfRegularPrice=" + sizeOfRegularPrice + " sizeOfCampaignPrice=" + sizeOfCampaignPrice);
+    System.out.println("sizeOfRegularPrice=" + sizeOfRegularPrice + " sizeOfCampaignPrice=" + sizeOfCampaignPrice);
     Assert.assertTrue(sizeOfRegularPrice.compareTo(sizeOfCampaignPrice) < 0);
 
     System.out.print("\nПерехожу на страницу товара\n");

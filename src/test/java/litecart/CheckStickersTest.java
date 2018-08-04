@@ -14,7 +14,7 @@ public class CheckStickersTest extends TestBase {
     System.out.print("\n\n***** Внутри метода test008() *****\n\n");
 
     System.out.println("Открываю главную страницу");
-    driver.get("http://localhost/litecart_using_page_object/");
+    driver.get("http://localhost/litecart/");
     (new WebDriverWait(driver, 3)).until(ExpectedConditions.titleIs("Online Store | My Store"));
     int amountMerchandiseCategories = driver.findElements(By.xpath("//div[@class='middle']/div[@class='content']/div[@class='box']")).size();
     System.out.println("Количество категорий товаров = " + amountMerchandiseCategories);

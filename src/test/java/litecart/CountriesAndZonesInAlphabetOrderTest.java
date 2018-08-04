@@ -13,7 +13,7 @@ public class CountriesAndZonesInAlphabetOrderTest extends TestBase {
     goToAdminPanel();
 
     System.out.println("Захожу в раздел Countries");
-    driver.get("http://localhost/litecart_using_page_object/admin/?app=countries&doc=countries");
+    driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
     int amountOfCountries = driver.findElements(By.xpath("//td[@id='content']//tbody/tr[@class='row']")).size();
     System.out.print("Количество стран = " + amountOfCountries + "\n\n");
 

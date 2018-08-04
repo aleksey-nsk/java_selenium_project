@@ -14,7 +14,7 @@ public class MainPage extends Page {
 
   public void open() {
     System.out.println("Метод для открытия главной страницы магазина");
-    driver.get("http://localhost/litecart_using_page_object/en/");
+    driver.get("http://localhost/litecart/en/");
   }
 
   @FindBy(xpath = "//div[@id='cart']/a[@class='link']")
