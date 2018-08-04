@@ -12,7 +12,7 @@ public class CustomerRegistrationTest extends TestBase {
     System.out.print("\n\n***** Внутри метода test011() *****\n\n");
 
     System.out.println("Открываю страницу Create Account");
-    driver.get("http://localhost/litecart_using_page_object/en/create_account");
+    driver.get("http://localhost/litecart/en/create_account");
 
     System.out.println("Заполняю форму регистрации нового клиента");
     long random = System.currentTimeMillis();
