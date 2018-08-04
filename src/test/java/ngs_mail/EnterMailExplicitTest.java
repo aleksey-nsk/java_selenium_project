@@ -15,57 +15,51 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EnterMailExplicitTest {
+
   private static WebDriver driver;
 
   @BeforeClass
   public static void start() {
-    System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer_Win32_3.12.0.exe");
-    driver = new InternetExplorerDriver(); // инициализация драйвера
-    driver.manage().window().maximize();
+    System.out.print("\n\n***** Внутри метода start() *****\n\n");
+    System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
+    driver = new ChromeDriver(); // инициализация драйвера
   }
 
   @Test
-  public void action() {
-    driver.get("https://mail.ngs.ru/");
+  public void enterMailExplicitTest() {
+    System.out.print("\n\n***** Внутри метода enterMailExplicitTest() *****\n\n");
 
-    // ВВОЖУ ЛОГИН:
-    //
-    // Можно делать таким способом:
-    // WebElement loginField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='login']")));
-    // loginField.sendKeys("user.testov");
-    //
-    // Или вот таким способом:
-    // wait
-    //   .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='login']")))
-    //   .sendKeys("user.testov");
-    //
-    // Или таким способом:
-    (new WebDriverWait(driver, 5))
+    System.out.println("Открываю страницу почты ngs");
+    driver.get("https://mail.ngs.ru/");
+    (new WebDriverWait(driver, 2)).until(ExpectedConditions.titleIs("ГОРОДСКАЯ ПОЧТОВАЯ СЛУЖБА"));
+
+    System.out.println("Ввожу логин");
+    (new WebDriverWait(driver, 10))
         .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='login']")))
         .sendKeys("user.testov");
 
-    // Ввожу пароль:
+    System.out.println("Ввожу пароль");
     (new WebDriverWait(driver, 10))
         .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='pass']")))
         .sendKeys("zxc67*Q");
 
-    // Жму кнопку Войти:
-    (new WebDriverWait(driver, 15))
+    System.out.println("Жму кнопку Войти");
+    (new WebDriverWait(driver, 10))
         .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@class,'ngsmail__login-submit')]")))
         .click();
 
-    // Убеждаюсь что попал в свой почтовый ящик:
+    System.out.println("Убеждаюсь что попал в свой почтовый ящик");
     String mailUser = (new WebDriverWait(driver, 5))
         .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@id='td_header_right1']")))
         .getText();
     Assert.assertEquals("user.testov@ngs.ruВыход", mailUser);
 
-    // Нажимаю кнопку Выйти:
+    System.out.println("Нажимаю кнопку Выйти");
     (new WebDriverWait(driver, 5))
         .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@href='logout']")))
         .click();
@@ -73,6 +67,7 @@ public class EnterMailExplicitTest {
 
   @AfterClass
   public static void stop() {
+    System.out.print("\n\n***** Внутри метода stop() *****\n\n");
     driver.quit();
     driver = null;
   }
