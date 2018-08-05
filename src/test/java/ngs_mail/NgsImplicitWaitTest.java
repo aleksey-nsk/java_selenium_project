@@ -1,5 +1,5 @@
 /*
-В данном тесте использую явные ожидания.
+В данном тесте использую неявные ожидания.
 Описание теста:
 - открываю страницу почты ngs
 - захожу в свой почтовый ящик
@@ -16,10 +16,9 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.concurrent.TimeUnit;
 
-public class EnterMailExplicitTest {
+public class NgsImplicitWaitTest {
 
   private static WebDriver driver;
 
@@ -28,41 +27,31 @@ public class EnterMailExplicitTest {
     System.out.print("\n\n***** Внутри метода start() *****\n\n");
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
     driver = new ChromeDriver(); // инициализация драйвера
+    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // задал неявное ожидание
   }
 
   @Test
-  public void enterMailExplicitTest() {
-    System.out.print("\n\n***** Внутри метода enterMailExplicitTest() *****\n\n");
+  public void ngsImplicitWaitTest() {
+    System.out.print("\n\n***** Внутри метода ngsImplicitWaitTest() *****\n\n");
 
     System.out.println("Открываю страницу почты ngs");
     driver.get("https://mail.ngs.ru/");
-    (new WebDriverWait(driver, 2)).until(ExpectedConditions.titleIs("ГОРОДСКАЯ ПОЧТОВАЯ СЛУЖБА"));
 
     System.out.println("Ввожу логин");
-    (new WebDriverWait(driver, 10))
-        .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='login']")))
-        .sendKeys("user.testov");
+    driver.findElement(By.xpath("//input[@id='login']")).sendKeys("user.testov");
 
     System.out.println("Ввожу пароль");
-    (new WebDriverWait(driver, 10))
-        .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='pass']")))
-        .sendKeys("zxc67*Q");
+    driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("zxc67*Q");
 
     System.out.println("Жму кнопку Войти");
-    (new WebDriverWait(driver, 10))
-        .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@class,'ngsmail__login-submit')]")))
-        .click();
+    driver.findElement(By.xpath("//button[contains(@class,'ngsmail__login-submit')]")).click();
 
     System.out.println("Убеждаюсь что попал в свой почтовый ящик");
-    String mailUser = (new WebDriverWait(driver, 5))
-        .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//td[@id='td_header_right1']")))
-        .getText();
+    String mailUser = driver.findElement(By.xpath("//td[@id='td_header_right1']")).getText();
     Assert.assertEquals("user.testov@ngs.ruВыход", mailUser);
 
     System.out.println("Нажимаю кнопку Выйти");
-    (new WebDriverWait(driver, 5))
-        .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@href='logout']")))
-        .click();
+    driver.findElement(By.xpath("//a[@href='logout']")).click();
   }
 
   @AfterClass
