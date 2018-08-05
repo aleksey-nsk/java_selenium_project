@@ -5,7 +5,7 @@
 Для примера использую браузер Chrome.
 
 Создаётся специальный объект типа ChromeOptions, и в этот
-объект добавляются аргументы ---> это и есть опции командной строки,
+объект добавляются аргументы --> это и есть опции командной строки,
 которые будут использованы при запуске браузера.
 */
 
@@ -21,10 +21,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ChromeOptionsTest {
+
   private static WebDriver driver;
 
   @BeforeClass
   public static void start() {
+    System.out.print("\n\n***** Внутри метода start() *****\n\n");
+
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
     ChromeOptions options = new ChromeOptions();
     // options.addArguments("start-fullscreen"); // полноэкранный режим
@@ -34,13 +37,16 @@ public class ChromeOptionsTest {
   }
 
   @Test
-  public void action() {
+  public void chromeOptionsTest() {
+    System.out.print("\n\n***** Внутри метода chromeOptionsTest() *****\n\n");
+    System.out.println("Открываю страничку Яндекса");
     driver.get("https://yandex.ru/");
     (new WebDriverWait(driver, 5)).until(ExpectedConditions.titleIs("Яндекс"));
   }
 
   @AfterClass
   public static void stop() {
+    System.out.print("\n\n***** Внутри метода stop() *****\n\n");
     driver.quit();
     driver = null;
   }
