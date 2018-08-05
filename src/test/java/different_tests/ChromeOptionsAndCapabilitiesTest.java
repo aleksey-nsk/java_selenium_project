@@ -1,6 +1,6 @@
 /*
-Объект типа ChromeOptions можно
-напрямую передать в конструктор ChromeDriver() то есть:
+Объект типа ChromeOptions можно напрямую
+передать в конструктор ChromeDriver() то есть:
 driver = new ChromeDriver(options);
 и в этом случае он будет автоматически преобразован
 в объект типа капабилитиз и использован.
@@ -24,10 +24,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ChromeOptionsAndCapabilitiesTest {
+
   private static WebDriver driver;
 
   @BeforeClass
   public static void start() {
+    System.out.print("\n\n***** Внутри метода start() *****\n\n");
+
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
     ChromeOptions options = new ChromeOptions();
     options.addArguments("start-maximized");
@@ -37,13 +40,16 @@ public class ChromeOptionsAndCapabilitiesTest {
   }
 
   @Test
-  public void action() {
+  public void chromeOptionsAndCapabilitiesTest() {
+    System.out.print("\n\n***** Внутри метода chromeOptionsAndCapabilitiesTest() *****\n\n");
+    System.out.println("Открываю страничку Яндекса");
     driver.get("https://yandex.ru/");
     (new WebDriverWait(driver, 5)).until(ExpectedConditions.titleIs("Яндекс"));
   }
 
   @AfterClass
   public static void stop() {
+    System.out.print("\n\n***** Внутри метода stop() *****\n\n");
     driver.quit();
     driver = null;
   }
