@@ -16,6 +16,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import java.util.concurrent.TimeUnit;
 
 public class NgsImplicitWaitTest {
@@ -25,9 +27,17 @@ public class NgsImplicitWaitTest {
   @BeforeClass
   public static void start() {
     System.out.print("\n\n***** Внутри метода start() *****\n\n");
-    System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
-    driver = new ChromeDriver(); // инициализация драйвера
+
+    // Проверю работу автотеста в 3 основных браузерах:
+    // System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
+    // driver = new ChromeDriver(); // инициализация драйвера
+    // System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer_Win32_3.12.0.exe");
+    // driver = new InternetExplorerDriver(); // инициализация драйвера
+    System.setProperty("webdriver.gecko.driver", "C:\\Tools\\geckodriver-v0.20.1-win64.exe");
+    driver = new FirefoxDriver(); // инициализация драйвера
+
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // задал неявное ожидание
+    driver.manage().window().maximize();
   }
 
   @Test
