@@ -1,7 +1,7 @@
-package different_tests.LoginTest_1.tests;
+package different_tests.delete_this.tests;
 
-import different_tests.LoginTest_1.pages.LoginPage;
-import different_tests.LoginTest_1.pages.MailBoxPage;
+import different_tests.delete_this.pages.LoginPage;
+import different_tests.delete_this.pages.MailBoxPage;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;

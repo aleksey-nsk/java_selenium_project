@@ -1,20 +1,17 @@
-package different_tests.LoginTest_1.pages;
+package different_tests.PageObjectExample.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-// LoginPage — класс содержащий описание страницы логина:
+// Класс содержащий описание страницы логина:
 public class LoginPage {
 
   // Конструктор класса:
   public LoginPage(WebDriver driver) {
     PageFactory.initElements(driver, this);
-    this.driver = driver;
   }
-
-  public WebDriver driver;
 
   @FindBy(xpath = "//input[@id='login']")
   private WebElement loginField; // поле логина
@@ -25,8 +22,8 @@ public class LoginPage {
   @FindBy(xpath = "//button[contains(@class,'ngsmail__login-submit')]")
   private WebElement loginButton; // кнопка логина
 
-  // Вёб-элементы есть. Теперь можно описать методы
-  // для взаимодействия с ними:
+  // Вёб-элементы есть. Теперь можно описать
+  // методы для взаимодействия с ними:
 
   // Метод для ввода логина:
   public void inputLogin(String login) {

@@ -1,4 +1,4 @@
-package different_tests.LoginTest_2_update.pages;
+package different_tests.delete_this.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
