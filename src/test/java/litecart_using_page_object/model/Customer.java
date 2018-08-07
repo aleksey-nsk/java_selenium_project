@@ -1,14 +1,10 @@
-package litecart_using_page_object.UserRegistrationTest_PageObject_3levels.model;
+package litecart_using_page_object.model;
 
 public class Customer {
-
-  // private String taxid;
-  // private String company;
 
   private String firstname;
   private String lastname;
   private String address;
-  // private String address2;
   private String postcode;
   private String city;
   private String country;
@@ -21,14 +17,6 @@ public class Customer {
     return new Customer().new Builder();
   }
 
-    /* public String getTaxid() {
-        return taxid;
-    } */
-
-    /* public String getCompany() {
-        return company;
-    } */
-
   public String getFirstname() {
     return firstname;
   }
@@ -40,10 +28,6 @@ public class Customer {
   public String getAddress() {
     return address;
   }
-
-    /* public String getAddress2() {
-        return address2;
-    } */
 
   public String getPostcode() {
     return postcode;
@@ -74,11 +58,9 @@ public class Customer {
   }
 
   public class Builder {
-    private Builder() {
-    }
 
-    // public Builder withTaxid(String taxid) { Customer.this.taxid = taxid; return this; }
-    // public Builder withCompany(String company) { Customer.this.company = company; return this; }
+    private Builder() {}
+
     public Builder withFirstname(String firstname) {
       Customer.this.firstname = firstname;
       return this;
@@ -94,7 +76,6 @@ public class Customer {
       return this;
     }
 
-    // public Builder withAdress2(String adress2) { Customer.this.address2 = adress2; return this; }
     public Builder withPostcode(String postcode) {
       Customer.this.postcode = postcode;
       return this;

@@ -1,11 +1,11 @@
-package litecart_using_page_object.UserRegistrationTest_PageObject_3levels.tests;
+package litecart_using_page_object.tests;
 
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import litecart_using_page_object.UserRegistrationTest_PageObject_3levels.model.Customer;
+import litecart_using_page_object.model.Customer;
 
 import java.util.Set;
 

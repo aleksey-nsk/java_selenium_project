@@ -23,7 +23,7 @@
 каждого удаления подождать, пока внизу обновится таблица.
 */
 
-package litecart_using_page_object.BasketTest_PageObject_3levels.tests;
+package litecart_using_page_object.yeto_peredelat_BasketTest_PageObject_3levels.tests;
 
 import org.junit.Test;
 

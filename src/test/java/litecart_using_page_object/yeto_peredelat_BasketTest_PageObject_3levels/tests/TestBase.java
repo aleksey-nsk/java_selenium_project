@@ -1,8 +1,8 @@
-package litecart_using_page_object.BasketTest_PageObject_3levels.tests;
+package litecart_using_page_object.yeto_peredelat_BasketTest_PageObject_3levels.tests;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import litecart_using_page_object.BasketTest_PageObject_3levels.app.Application;
+import litecart_using_page_object.yeto_peredelat_BasketTest_PageObject_3levels.app.Application;
 
 public class TestBase {
 

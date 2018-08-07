@@ -1,13 +1,13 @@
-package litecart_using_page_object.UserRegistrationTest_PageObject_3levels.app;
+package litecart_using_page_object.app;
 
-import litecart_using_page_object.UserRegistrationTest_PageObject_3levels.pages.AdminPanelLoginPage;
+import litecart_using_page_object.pages.AdminPanelLoginPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import litecart_using_page_object.UserRegistrationTest_PageObject_3levels.model.Customer;
-import litecart_using_page_object.UserRegistrationTest_PageObject_3levels.pages.CustomerListPage;
-import litecart_using_page_object.UserRegistrationTest_PageObject_3levels.pages.RegistrationPage;
+import litecart_using_page_object.model.Customer;
+import litecart_using_page_object.pages.CustomerListPage;
+import litecart_using_page_object.pages.RegistrationPage;
 
 import java.util.Set;
 

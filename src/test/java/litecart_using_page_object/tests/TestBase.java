@@ -1,7 +1,7 @@
-package litecart_using_page_object.UserRegistrationTest_PageObject_3levels.tests;
+package litecart_using_page_object.tests;
 
 import org.junit.BeforeClass;
-import litecart_using_page_object.UserRegistrationTest_PageObject_3levels.app.Application;
+import litecart_using_page_object.app.Application;
 
 // Базовый класс для тестов:
 public class TestBase {

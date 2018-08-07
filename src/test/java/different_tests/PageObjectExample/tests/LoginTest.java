@@ -12,8 +12,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import different_tests.delete_this.pages.LoginPage;
-import different_tests.delete_this.pages.MailBoxPage;
+import different_tests.PageObjectExample.pages.LoginPage;
+import different_tests.PageObjectExample.pages.MailBoxPage;
 import java.util.concurrent.TimeUnit;
 
 public class LoginTest {

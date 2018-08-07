@@ -1,4 +1,4 @@
-package litecart_using_page_object.UserRegistrationTest_PageObject_3levels.pages;
+package litecart_using_page_object.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
