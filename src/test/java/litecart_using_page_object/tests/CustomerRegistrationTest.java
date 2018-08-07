@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import litecart_using_page_object.model.Customer;
-
 import java.util.Set;
 
 @RunWith(DataProviderRunner.class)
@@ -14,29 +13,24 @@ public class CustomerRegistrationTest extends TestBase {
 
   @Test
   @UseDataProvider(value = "validCustomers", location = DataProviders.class)
-  public void action(Customer customer /*тестовые данные передаём как параметр*/) {
-    System.out.print("\n***** Внутри метода action() *****\n\n");
+  public void customerRegistrationTest(Customer customer /*тестовые данные передаём как параметр*/) {
+    System.out.print("\n\n***** Внутри метода customerRegistrationTest() *****\n\n");
 
-        /* Перед созданием нового клиента запоминаем текущее множество айдишников:
-           Set<String> oldIds = getCustomerIds(); */
     // Получаем из приложения множество идентификаторов клиентов:
     Set<String> oldIds = app.getCustomerIds();
 
-    // registerNewCustomer(customer);
     // Создаём в приложении нового клиента:
     app.registerNewCustomer(customer);
 
-        /* Далее получаю новый список айдишников клиентов:
-           Set<String> newIds = getCustomerIds(); */
-    // Получаем из приложения новый список идентификаторов:
+    // Получаем из приложения новый список идентификаторов клиентов:
     Set<String> newIds = app.getCustomerIds();
 
-    // Выполняем сравнение:
-    // Новое множество содержит все айдишники старого множества, т.е.
-    // никого нечайно не удалили:
+    // Выполняем проверки:
+    // (1) новое множество содержит все айдишники старого множества,
+    // т.е. никого случайно не удалили:
     Assert.assertTrue(newIds.containsAll(oldIds));
-    // Во-вторых в новом множестве появился еще один
-    // дополнительный элемент (новый зарегистрировавшийся клиент):
+    // (2) в новом множестве появился еще один
+    // элемент (новый зарегистрированный клиент):
     Assert.assertTrue(newIds.size() == oldIds.size() + 1);
   }
 }
