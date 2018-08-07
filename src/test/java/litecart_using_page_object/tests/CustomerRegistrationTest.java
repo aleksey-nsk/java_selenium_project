@@ -1,3 +1,9 @@
+/*
+Сценарий регистрации нового клиента
+Реализация с использованием Page Object
+Пример от Алексея Баранцева
+*/
+
 package litecart_using_page_object.tests;
 
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
