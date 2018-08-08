@@ -1,6 +1,7 @@
 package litecart_using_page_object.app;
 
 import litecart_using_page_object.pages.AdminPanelLoginPage;
+import litecart_using_page_object.pages.HomePage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,7 @@ public class Application {
   private RegistrationPage registrationPage;
   private AdminPanelLoginPage adminPanelLoginPage;
   private CustomerListPage customerListPage;
+  private HomePage homePage;
 
   public Application() {
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
@@ -28,20 +30,19 @@ public class Application {
     registrationPage = new RegistrationPage(driver);
     adminPanelLoginPage = new AdminPanelLoginPage(driver);
     customerListPage = new CustomerListPage(driver);
+    homePage = new HomePage(driver);
   }
 
   public void quit() {
     driver.quit();
   }
 
-  // Метод для регистрации нового клиента:
   public void registerNewCustomer(Customer customer) {
-    // !!! (МОЖЕТ ПЕРЕД РЕГИСТРАЦИЕЙ ВЫЙТИ ИЗ АДМИНКИ ?????????)
+    System.out.println("Метод для регистрации нового клиента");
 
-    // Заиспользуем класс RegistrationPage (то есть страницу-объект registrationPage):
-    // Открываю страницу регистрации (Create Account):
     registrationPage.open();
-    // Заполняю форму регистрации (теперь работаем с полями а не с методами):
+
+    System.out.println("Заполняю форму регистрации");
     registrationPage.firstnameInput.sendKeys(customer.getFirstname());
     registrationPage.lastnameInput.sendKeys(customer.getLastname());
     registrationPage.adressInput.sendKeys(customer.getAddress());
@@ -53,19 +54,15 @@ public class Application {
     registrationPage.phoneInput.sendKeys(customer.getPhone());
     registrationPage.passwordInput.sendKeys(customer.getPassword());
     registrationPage.confirmedPasswordInput.sendKeys(customer.getPassword());
-    // Нажимаю кнопку Create Account:
+
+    System.out.println("Нажимаю кнопку Create Account");
     registrationPage.createAccountButton.click();
 
-    // !!!!!!!!НАВЕРНО ВЫХОД НАДО ВЫНЕСТИ
-    // КАК ОТДЕЛЬНЫЙ МЕТОД !!!!!!!
-    System.out.print("Выхожу из созданной учётки (Logout)... ");
-    driver.findElement(By.xpath("//ul[@class='list-vertical']/li[4]/a")).click();
-    String logOutMessage = driver.findElement(By.xpath("//div[@class='notice success']")).getText();
-    Assert.assertEquals("You are now logged out.", logOutMessage);
-    System.out.print("Успех!\n");
+    homePage.logOut();
   }
 
   public Set<String> getCustomerIds() {
+    System.out.println("Метод для получения множества идентификаторов клиентов");
     if (adminPanelLoginPage.open().isOnThisPage()) {
       adminPanelLoginPage.enterUsername("admin").enterPassword("admin").submitLogin();
       // - тут методы вытягиваются в цепочку (это так называемый флуент-интерфейс, особый стиль написания кода).

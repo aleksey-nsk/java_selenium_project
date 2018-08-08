@@ -17,7 +17,7 @@ public class AdminPanelLoginPage extends Page {
   }
 
   public boolean isOnThisPage() {
-    System.out.println("Метод для проверки, вдруг логин уже выполнен, чтобы повторно его не выполнять");
+    System.out.println("Метод для проверки того, что логин ещё не выполнен");
     return driver.findElements(By.id("box-login")).size() > 0;
   }
 
