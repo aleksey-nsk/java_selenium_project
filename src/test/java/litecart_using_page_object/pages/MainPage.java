@@ -1,4 +1,4 @@
-package litecart_using_page_object.yeto_peredelat_BasketTest_PageObject_3levels.pages;
+package litecart_using_page_object.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

@@ -1,10 +1,10 @@
-package litecart_using_page_object.yeto_peredelat_BasketTest_PageObject_3levels.app;
+package litecart_using_page_object.app;
 
-import litecart_using_page_object.yeto_peredelat_BasketTest_PageObject_3levels.pages.BasketPage;
-import litecart_using_page_object.yeto_peredelat_BasketTest_PageObject_3levels.pages.ProductPage;
+import litecart_using_page_object.pages.BasketPage;
+import litecart_using_page_object.pages.ProductPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import litecart_using_page_object.yeto_peredelat_BasketTest_PageObject_3levels.pages.MainPage;
+import litecart_using_page_object.pages.MainPage;
 
 import java.util.concurrent.TimeUnit;
 
