@@ -1,4 +1,4 @@
-package litecart_using_page_object.pages;
+package different_tests.PageObjectSecondExample.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;

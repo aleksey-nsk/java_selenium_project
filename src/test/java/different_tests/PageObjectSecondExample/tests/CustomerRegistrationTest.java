@@ -4,14 +4,14 @@
 Пример от Алексея Баранцева
 */
 
-package litecart_using_page_object.tests;
+package different_tests.PageObjectSecondExample.tests;
 
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import litecart_using_page_object.model.Customer;
+import different_tests.PageObjectSecondExample.model.Customer;
 import java.util.Set;
 
 @RunWith(DataProviderRunner.class)

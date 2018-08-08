@@ -1,4 +1,4 @@
-package litecart_using_page_object.pages;
+package different_tests.PageObjectSecondExample.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;

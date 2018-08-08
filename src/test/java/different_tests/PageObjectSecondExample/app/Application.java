@@ -1,12 +1,12 @@
-package litecart_using_page_object.app;
+package different_tests.PageObjectSecondExample.app;
 
-import litecart_using_page_object.pages.AdminPanelLoginPage;
-import litecart_using_page_object.pages.HomePage;
+import different_tests.PageObjectSecondExample.pages.AdminPanelLoginPage;
+import different_tests.PageObjectSecondExample.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import litecart_using_page_object.model.Customer;
-import litecart_using_page_object.pages.CustomerListPage;
-import litecart_using_page_object.pages.RegistrationPage;
+import different_tests.PageObjectSecondExample.model.Customer;
+import different_tests.PageObjectSecondExample.pages.CustomerListPage;
+import different_tests.PageObjectSecondExample.pages.RegistrationPage;
 import java.util.Set;
 
 // В тестах вообще нигде не видно что используется Селениум.

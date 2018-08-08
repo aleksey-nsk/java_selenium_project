@@ -1,7 +1,7 @@
-package litecart_using_page_object.tests;
+package different_tests.PageObjectSecondExample.tests;
 
 import org.junit.BeforeClass;
-import litecart_using_page_object.app.Application;
+import different_tests.PageObjectSecondExample.app.Application;
 
 // Базовый класс для тестов:
 public class TestBase {

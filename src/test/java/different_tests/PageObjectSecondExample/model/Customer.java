@@ -1,4 +1,4 @@
-package litecart_using_page_object.model;
+package different_tests.PageObjectSecondExample.model;
 
 public class Customer {
 

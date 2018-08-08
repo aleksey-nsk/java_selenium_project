@@ -1,7 +1,7 @@
-package litecart_using_page_object.tests;
+package different_tests.PageObjectSecondExample.tests;
 
 import com.tngtech.java.junit.dataprovider.DataProvider;
-import litecart_using_page_object.model.Customer;
+import different_tests.PageObjectSecondExample.model.Customer;
 
 public class DataProviders {
 
