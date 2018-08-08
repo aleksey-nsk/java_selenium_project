@@ -2,8 +2,6 @@ package litecart_using_page_object.app;
 
 import litecart_using_page_object.pages.AdminPanelLoginPage;
 import litecart_using_page_object.pages.HomePage;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import litecart_using_page_object.model.Customer;
