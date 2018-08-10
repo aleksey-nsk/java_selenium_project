@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
 public class BasketPage extends Page {
@@ -18,13 +17,13 @@ public class BasketPage extends Page {
   }
 
   @FindBy(xpath = "//button[@name='remove_cart_item']")
-  public WebElement removeProductButton;
+  private WebElement removeProductButton;
 
   @FindBy(xpath = "//ul[@class='shortcuts']/li")
-  public List<WebElement> productsInBasket;
+  private List<WebElement> productsInBasket;
 
   @FindBy(xpath = "//table[@class='dataTable rounded-corners']/tbody/tr")
-  public List<WebElement> linesInTable;
+  private List<WebElement> linesInTable;
 
   public void waitForTableUpdating(int oldAmount) {
     System.out.println("Метод ожидания обновления таблицы товаров");
@@ -41,5 +40,20 @@ public class BasketPage extends Page {
         By.xpath("//div[@id='checkout-cart-wrapper']//em"),
         "There are no items in your cart."
     ));
+  }
+
+  // Метод класса BasketPage возвращающий текущее количество товаров в корзине:
+  public int currentAmountProductsInBasket() {
+    return productsInBasket.size();
+  }
+
+  // Метод возвращающий текущее количество строк в таблице:
+  public int currentLinesInTable() {
+    return linesInTable.size();
+  }
+
+  public void removeOneProduct() {
+    System.out.print("Удаляю один товар. ");
+    removeProductButton.click();
   }
 }

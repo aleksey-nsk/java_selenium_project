@@ -4,60 +4,54 @@ import litecart_using_page_object.pages.BasketPage;
 import litecart_using_page_object.pages.ProductPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import litecart_using_page_object.pages.MainPage;
-
+import litecart_using_page_object.pages.HomePage;
 import java.util.concurrent.TimeUnit;
 
+// В тестах вообще нигде не видно что используется Селениум.
+// Внутрь класса Application прячем все технические подробности.
+// Только в этом классе видим что используется Селениум.
+// Именно тут создаётся драйвер, и здесь же он используется:
 public class Application {
 
   private WebDriver driver;
-
-  private MainPage mainPage;
+  private HomePage homePage;
   private ProductPage productPage;
   private BasketPage basketPage;
 
   public Application() {
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
-    driver = new ChromeDriver();
+    driver = new ChromeDriver(); // инициализация драйвера
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // задал неявное ожидание
     driver.manage().window().maximize();
-
-    mainPage = new MainPage(driver);
+    homePage = new HomePage(driver);
     productPage = new ProductPage(driver);
     basketPage = new BasketPage(driver);
   }
 
   public void quit() {
     driver.quit();
-    driver = null;
   }
 
   public void addOneProductToBasket() {
-    System.out.println("\nМетод для добавления 1 товара в корзину");
-    mainPage.open();
-    System.out.println("Открываю первый товар из списка Most Popular");
-    mainPage.firstProduct.click();
-    int oldAmountProductsInBasket = Integer.parseInt(productPage.amountProductsInBasket.getText());
+    System.out.println("\nМЕТОД ДЛЯ ДОБАВЛЕНИЯ 1 ТОВАРА В КОРЗИНУ");
+    homePage.open();
+    homePage.firstProductOpen();
+    int oldAmountProductsInBasket = productPage.currentAmountProductsInBasket();
     productPage.selectSizeIfPresent();
-    System.out.println("Жму кнопку для добавления в корзину");
-    productPage.addToBasketButton.click();
-    System.out.println("Жду пока счётчик товаров в корзине обновится");
+    productPage.addProductToBasket();
     productPage.waitForCounterUpdating(oldAmountProductsInBasket);
   }
 
   public void deleteAllProductsFromBasket() {
-    System.out.println("\nМетод удаления всех товаров из корзины");
-    mainPage.open();
-    System.out.println("Жму кнопку чтобы открыть корзину");
-    mainPage.openBasketButton.click();
-    int amountProductsInBasket = basketPage.productsInBasket.size();
-    System.out.println("Начальное количество товаров в корзине = " + amountProductsInBasket);
-
-    for (int i = 1; i <= amountProductsInBasket; i++) {
-      int oldLines = basketPage.linesInTable.size();
-      System.out.print("Удаляю один товар. ");
-      basketPage.removeProductButton.click();
-      if (i < amountProductsInBasket) {
+    System.out.println("\nМЕТОД ДЛЯ УДАЛЕНИЯ ВСЕХ ТОВАРОВ ИЗ КОРЗИНЫ");
+    homePage.open();
+    homePage.openBasket();
+    int oldAmountProductsInBasket = basketPage.currentAmountProductsInBasket();
+    System.out.println("Начальное количество товаров в корзине = " + oldAmountProductsInBasket);
+    for (int i = 1; i <= oldAmountProductsInBasket; i++) {
+      int oldLines = basketPage.currentLinesInTable();
+      basketPage.removeOneProduct();
+      if (i < oldAmountProductsInBasket) {
         basketPage.waitForTableUpdating(oldLines);
       } else {
         basketPage.waitForEmptyBasketMessage();

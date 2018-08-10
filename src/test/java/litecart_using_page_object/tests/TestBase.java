@@ -4,9 +4,10 @@ import litecart_using_page_object.app.Application;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
+// Базовый класс для тестов:
 public class TestBase {
 
-  public static Application app;
+  protected static Application app;
 
   @BeforeClass
   public static void start() {
@@ -18,5 +19,6 @@ public class TestBase {
   public static void stop() {
     System.out.print("\n\n***** Внутри метода stop() *****\n\n");
     app.quit();
+    app = null;
   }
 }
