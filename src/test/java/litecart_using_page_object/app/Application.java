@@ -79,7 +79,7 @@ public class Application {
     int amountMainMenuItems = adminPage.amountMainMenuItems();
     System.out.println("Количество пунктов в главном меню = " + amountMainMenuItems);
     for (int i = 1; i <= amountMainMenuItems; i++) {
-      if (i>4 && i<15) { continue; } // использую для отладки
+      // if (i>4 && i<15) { continue; } // использую для отладки
       adminPage.clickMainMenuItem(i);
       if (adminPage.isSubMenuPresent()) {
         int amountSubMenuItems = adminPage.amountSubMenuItems();
