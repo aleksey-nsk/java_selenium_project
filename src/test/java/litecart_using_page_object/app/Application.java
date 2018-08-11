@@ -1,11 +1,9 @@
 package litecart_using_page_object.app;
 
-import litecart_using_page_object.pages.AdminPanelLoginPage;
-import litecart_using_page_object.pages.BasketPage;
-import litecart_using_page_object.pages.ProductPage;
+import litecart_using_page_object.pages.*;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import litecart_using_page_object.pages.HomePage;
 import java.util.concurrent.TimeUnit;
 
 // В тестах вообще нигде не видно что используется Селениум.
@@ -19,6 +17,7 @@ public class Application {
   private ProductPage productPage;
   private BasketPage basketPage;
   private AdminPanelLoginPage adminPanelLoginPage;
+  private AdminPage adminPage;
 
   public Application() {
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
@@ -29,6 +28,7 @@ public class Application {
     productPage = new ProductPage(driver);
     basketPage = new BasketPage(driver);
     adminPanelLoginPage = new AdminPanelLoginPage(driver);
+    adminPage = new AdminPage(driver);
   }
 
   public void quit() {
@@ -71,6 +71,28 @@ public class Application {
 
   public void exitAdminPanel() {
     System.out.println("\nМЕТОД ДЛЯ ВЫХОДА ИЗ ПАНЕЛИ АДМИНА");
-    homePage.logOut();
+    adminPage.logOut();
+  }
+
+  public void passAllAdminSections() {
+    System.out.println("\nПРОЙТИ ВСЕ РАЗДЕЛЫ АДМИНКИ И ПРОВЕРИТЬ НАЛИЧИЕ ЗАГОЛОВКОВ h1");
+    int amountMainMenuItems = adminPage.amountMainMenuItems();
+    System.out.println("Количество пунктов в главном меню = " + amountMainMenuItems);
+    for (int i = 1; i <= amountMainMenuItems; i++) {
+      if (i>4 && i<15) { continue; } // использую для отладки
+      adminPage.clickMainMenuItem(i);
+      if (adminPage.isSubMenuPresent()) {
+        int amountSubMenuItems = adminPage.amountSubMenuItems();
+        System.out.println("  количество пунктов подменю = " + amountSubMenuItems);
+        for (int j = 1; j <= amountSubMenuItems; j++) {
+          adminPage.clickSubMenuItem(j);
+          System.out.println("  подменю" + i + "." + j + " - проверяю наличие заголовка");
+          Assert.assertTrue(adminPage.isHeaderPresent());
+        }
+      } else {
+        System.out.println("  подменю отсутствует. Проверяю наличие заголовка в пункте главного меню");
+        Assert.assertTrue(adminPage.isHeaderPresent());
+      }
+    }
   }
 }
