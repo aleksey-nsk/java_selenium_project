@@ -1,5 +1,6 @@
 package litecart_using_page_object.app;
 
+import litecart_using_page_object.pages.AdminPanelLoginPage;
 import litecart_using_page_object.pages.BasketPage;
 import litecart_using_page_object.pages.ProductPage;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +18,7 @@ public class Application {
   private HomePage homePage;
   private ProductPage productPage;
   private BasketPage basketPage;
+  private AdminPanelLoginPage adminPanelLoginPage;
 
   public Application() {
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
@@ -26,6 +28,7 @@ public class Application {
     homePage = new HomePage(driver);
     productPage = new ProductPage(driver);
     basketPage = new BasketPage(driver);
+    adminPanelLoginPage = new AdminPanelLoginPage(driver);
   }
 
   public void quit() {
@@ -57,5 +60,17 @@ public class Application {
         basketPage.waitForEmptyBasketMessage();
       }
     }
+  }
+
+  public void openAdminPanel() {
+    System.out.println("\nМЕТОД ДЛЯ ВХОДА В ПАНЕЛЬ АДМИНА");
+    if (adminPanelLoginPage.open().isOnThisPage()) {
+      adminPanelLoginPage.enterUsername("admin").enterPassword("admin").clickLoginButton();
+    }
+  }
+
+  public void exitAdminPanel() {
+    System.out.println("\nМЕТОД ДЛЯ ВЫХОДА ИЗ ПАНЕЛИ АДМИНА");
+    homePage.logOut();
   }
 }

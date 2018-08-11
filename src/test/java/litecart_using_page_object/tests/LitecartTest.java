@@ -5,6 +5,13 @@ import org.junit.Test;
 public class LitecartTest extends TestBase {
 
   @Test
+  public void test003() {
+    System.out.print("\n\n***** Внутри метода test003() *****\n\n");
+    app.openAdminPanel();
+    app.exitAdminPanel();
+  }
+
+  @Test
   public void test013() {
     System.out.print("\n\n***** Внутри метода test013() *****\n\n");
     app.addOneProductToBasket();
