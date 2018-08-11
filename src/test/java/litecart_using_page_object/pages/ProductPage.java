@@ -10,16 +10,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductPage extends Page {
 
-  public ProductPage(WebDriver driver) {
-    super(driver);
-    PageFactory.initElements(driver, this);
-  }
-
   @FindBy(xpath = "//button[@name='add_cart_product']")
   private WebElement addToBasketButton;
 
   @FindBy(xpath = "//span[@class='quantity']")
   private WebElement amountProductsInBasket;
+
+  public ProductPage(WebDriver driver) {
+    super(driver);
+    PageFactory.initElements(driver, this);
+  }
 
   public void selectSizeIfPresent() {
     if (isElementPresent(driver, By.xpath("//select[@name='options[Size]']"))) {

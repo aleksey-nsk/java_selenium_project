@@ -11,11 +11,6 @@ import java.util.List;
 
 public class BasketPage extends Page {
 
-  public BasketPage(WebDriver driver) {
-    super(driver);
-    PageFactory.initElements(driver, this);
-  }
-
   @FindBy(xpath = "//button[@name='remove_cart_item']")
   private WebElement removeProductButton;
 
@@ -24,6 +19,11 @@ public class BasketPage extends Page {
 
   @FindBy(xpath = "//table[@class='dataTable rounded-corners']/tbody/tr")
   private List<WebElement> linesInTable;
+
+  public BasketPage(WebDriver driver) {
+    super(driver);
+    PageFactory.initElements(driver, this);
+  }
 
   public void waitForTableUpdating(int oldAmount) {
     System.out.println("Метод ожидания обновления таблицы товаров");
