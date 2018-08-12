@@ -10,14 +10,9 @@ import java.util.List;
 
 public class AdminPage extends Page {
 
-  @FindBy(xpath = "//a[@title='Logout']")
-  private WebElement logoutButton;
-
-  @FindBy(xpath = "//ul[@id='box-apps-menu']/li")
-  private List<WebElement> mainMenuItems;
-
-  @FindBy(xpath = "//li[@class='selected']/ul[@class='docs']/li")
-  private List<WebElement> subMenuItems;
+  @FindBy(xpath = "//a[@title='Logout']") private WebElement logoutButton;
+  @FindBy(xpath = "//ul[@id='box-apps-menu']/li") private List<WebElement> mainMenuItems;
+  @FindBy(xpath = "//li[@class='selected']/ul[@class='docs']/li") private List<WebElement> subMenuItems;
 
   public AdminPage(WebDriver driver) {
     super(driver);

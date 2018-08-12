@@ -11,18 +11,10 @@ import java.util.List;
 
 public class HomePage extends Page {
 
-  @FindBy(xpath = "//div[@id='cart']/a[@class='link']")
-  private WebElement openBasketButton;
-
-  @FindBy(xpath = "//div[@id='box-most-popular']//ul/li[1]")
-  private WebElement firstProduct; // первый товар в категории Most Popular
-
-  @FindBy(xpath = "//div[@class='middle']/div[@class='content']/div[@class='box']")
-  private List<WebElement> merchandiseCategories;
-
-  @FindBy(xpath = "//ul[@class='list-vertical']/li[4]/a")
-  private WebElement logoutButton;
-
+  @FindBy(xpath = "//div[@id='cart']/a[@class='link']") private WebElement openBasketButton;
+  @FindBy(xpath = "//div[@id='box-most-popular']//ul/li[1]") private WebElement firstProduct;
+  @FindBy(xpath = "//div[@class='middle']/div[@class='content']/div[@class='box']") private List<WebElement> merchandiseCategories;
+  @FindBy(xpath = "//ul[@class='list-vertical']/li[4]/a") private WebElement logoutButton;
   @FindBy(name = "email") private WebElement email;
   @FindBy(name = "password") private WebElement password;
   @FindBy(name = "login") private WebElement loginButton;

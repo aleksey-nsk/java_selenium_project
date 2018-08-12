@@ -9,14 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AdminPanelLoginPage extends Page {
 
-  @FindBy(xpath = "//input[@name='username']")
-  private WebElement usernameField;
-
-  @FindBy(xpath = "//input[@name='password']")
-  private WebElement passwordField;
-
-  @FindBy(xpath = "//button[@name='login']")
-  private WebElement loginButton;
+  @FindBy(xpath = "//input[@name='username']") private WebElement usernameField;
+  @FindBy(xpath = "//input[@name='password']") private WebElement passwordField;
+  @FindBy(xpath = "//button[@name='login']") private WebElement loginButton;
 
   public AdminPanelLoginPage(WebDriver driver) {
     super(driver);

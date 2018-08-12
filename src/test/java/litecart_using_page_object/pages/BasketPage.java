@@ -11,14 +11,9 @@ import java.util.List;
 
 public class BasketPage extends Page {
 
-  @FindBy(xpath = "//button[@name='remove_cart_item']")
-  private WebElement removeProductButton;
-
-  @FindBy(xpath = "//ul[@class='shortcuts']/li")
-  private List<WebElement> productsInBasket;
-
-  @FindBy(xpath = "//table[@class='dataTable rounded-corners']/tbody/tr")
-  private List<WebElement> linesInTable;
+  @FindBy(xpath = "//button[@name='remove_cart_item']") private WebElement removeProductButton;
+  @FindBy(xpath = "//ul[@class='shortcuts']/li") private List<WebElement> productsInBasket;
+  @FindBy(xpath = "//table[@class='dataTable rounded-corners']/tbody/tr") private List<WebElement> linesInTable;
 
   public BasketPage(WebDriver driver) {
     super(driver);
