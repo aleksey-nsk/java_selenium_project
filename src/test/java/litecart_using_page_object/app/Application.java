@@ -95,4 +95,24 @@ public class Application {
       }
     }
   }
+
+  public void checkStickers() {
+    System.out.println("\nПРОВЕРИТЬ ЧТО У КАЖДОГО ТОВАРА КОЛИЧЕСТВО СТИКЕРОВ 0 ИЛИ 1");
+    homePage.open();
+    int amountMerchandiseCategories = homePage.amountMerchandiseCategories();
+    System.out.println("Количество категорий товаров = " + amountMerchandiseCategories);
+    for (int i = 0; i < amountMerchandiseCategories; i++) {
+      System.out.println("\nКатегория №" + (i+1) + "\nЗаголовок = " + homePage.currentCategoryTitle(i));
+      int amountMerchandisesInCategory = homePage.amountMerchandisesInCategory(i);
+      System.out.println("Количество товаров в текущей категории = " + amountMerchandisesInCategory);
+      for (int j = 0; j < amountMerchandisesInCategory; j++) {
+        System.out.print("Категория/товар: " + (i+1) + "/" + (j+1) + ", ");
+        System.out.print("название = " + homePage.currentProductName(i,j) + ". Проверяю что стикеров один или ноль: ");
+        int stickerAmount = homePage.stickerAmount(i,j);
+        // stickerAmount = 3; // для проверки падения теста
+        System.out.println("количество стикеров = " + stickerAmount);
+        Assert.assertTrue(stickerAmount==0 || stickerAmount==1);
+      }
+    }
+  }
 }

@@ -20,6 +20,12 @@ public class LitecartTest extends TestBase {
   }
 
   @Test
+  public void test008() {
+    System.out.print("\n\n***** Внутри метода test008() *****\n\n");
+    app.checkStickers();
+  }
+
+  @Test
   public void test013() {
     System.out.print("\n\n***** Внутри метода test013() *****\n\n");
     app.addOneProductToBasket();
