@@ -28,7 +28,7 @@ public class RegistrationPage extends Page {
   }
 
   public void open() {
-    System.out.println("Метод для открытия страницы регистрации клиента");
+    System.out.println("Открываю страницу регистрации клиента");
     driver.get("http://localhost/litecart/en/create_account");
   }
 
@@ -42,14 +42,14 @@ public class RegistrationPage extends Page {
   public void passwordEnter() { password.sendKeys("qwerty"); }
   public void confirmedPasswordEnter() { confirmedPassword.sendKeys("qwerty"); }
 
+  // Метод для выбора страны:
   public void selectCountry(String country) {
-    System.out.println("Метод для выбора страны");
     driver.findElement(By.xpath("//span[@class='select2-selection__arrow']")).click();
     driver.findElement(By.xpath("//input[@class='select2-search__field']")).sendKeys(country + Keys.ENTER);
   }
 
+  // Метод для выбора штата:
   public void selectZone(String zone) {
-    System.out.println("Метод для выбора штата");
     driver.findElement(By.xpath("//select[@name='zone_code']")).click();
     driver.findElement(By.xpath(String.format("//select[@name='zone_code']/option[@value='%s']", zone))).click();
   }
