@@ -18,6 +18,7 @@ public class Application {
   private BasketPage basketPage;
   private AdminPanelLoginPage adminPanelLoginPage;
   private AdminPage adminPage;
+  private RegistrationPage registrationPage;
 
   public Application() {
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
@@ -29,6 +30,7 @@ public class Application {
     basketPage = new BasketPage(driver);
     adminPanelLoginPage = new AdminPanelLoginPage(driver);
     adminPage = new AdminPage(driver);
+    registrationPage = new RegistrationPage(driver);
   }
 
   public void quit() {
@@ -114,5 +116,27 @@ public class Application {
         Assert.assertTrue(stickerAmount==0 || stickerAmount==1);
       }
     }
+  }
+
+  public void customerRegistration() {
+    System.out.println("\nМЕТОД ДЛЯ РЕГИСТРАЦИИ НОВОГО КЛИЕНТА");
+    registrationPage.open();
+    System.out.println("Заполняю форму регистрации нового клиента");
+    long random = System.currentTimeMillis();
+    registrationPage.firstnameEnter(random);
+    registrationPage.lastnameEnter();
+    registrationPage.addressEnter();
+    registrationPage.postcodeEnter();
+    registrationPage.cityEnter();
+    registrationPage.selectCountry("United States");
+    registrationPage.selectZone("KS" /*штат Канзас*/);
+    registrationPage.emailEnter(random);
+    registrationPage.phoneEnter();
+    registrationPage.passwordEnter();
+    registrationPage.confirmedPasswordEnter();
+    registrationPage.createAccountButtonClick();
+    homePage.logOut();
+    homePage.logIn(random);
+    homePage.logOut();
   }
 }

@@ -20,6 +20,13 @@ public class HomePage extends Page {
   @FindBy(xpath = "//div[@class='middle']/div[@class='content']/div[@class='box']")
   private List<WebElement> merchandiseCategories;
 
+  @FindBy(xpath = "//ul[@class='list-vertical']/li[4]/a")
+  private WebElement logoutButton;
+
+  @FindBy(name = "email") private WebElement email;
+  @FindBy(name = "password") private WebElement password;
+  @FindBy(name = "login") private WebElement loginButton;
+
   public HomePage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);
@@ -71,5 +78,25 @@ public class HomePage extends Page {
         .get(i)
         .findElements(By.xpath(".//ul[@class='listing-wrapper products']/li["+(j+1)+"]//div[contains(@class,'sticker')]"))
         .size();
+  }
+
+  public void logOut() {
+    System.out.println("Выхожу из клиентской учётки (Logout)");
+    logoutButton.click();
+    (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElement(
+        By.xpath("//div[@class='notice success']"),
+        "You are now logged out."
+    ));
+  }
+
+  public void logIn(long random) {
+    System.out.println("Захожу в клиентскую учётку (Login)");
+    email.sendKeys("email" + random + "@test.ru");
+    password.sendKeys("qwerty");
+    loginButton.click();
+    (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElement(
+        By.xpath("//div[@class='notice success']"),
+        "You are now logged in as Firstname-" + random + " Lastname."
+    ));
   }
 }
