@@ -19,6 +19,8 @@ public class Application {
   private AdminPanelLoginPage adminPanelLoginPage;
   private AdminPage adminPage;
   private RegistrationPage registrationPage;
+  private AddNewProductPage addNewProductPage;
+  private CatalogPage catalogPage;
 
   public Application() {
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
@@ -31,6 +33,8 @@ public class Application {
     adminPanelLoginPage = new AdminPanelLoginPage(driver);
     adminPage = new AdminPage(driver);
     registrationPage = new RegistrationPage(driver);
+    addNewProductPage = new AddNewProductPage(driver);
+    catalogPage = new CatalogPage(driver);
   }
 
   public void quit() {
@@ -138,5 +142,38 @@ public class Application {
     homePage.logOut();
     homePage.logIn(random);
     homePage.logOut();
+  }
+
+  public void addProduct() {
+    System.out.println("\nМЕТОД ДЛЯ ДОБАВЛЕНИЯ НОВОГО ТОВАРА");
+    String productName = "Test Duck " + System.currentTimeMillis();
+    addNewProductPage.open();
+
+    addNewProductPage.tabGeneralOpen(); // открываю вкладку General
+    addNewProductPage.statusEnabledClick();
+    addNewProductPage.statusEnabledClick();
+    addNewProductPage.nameEnter(productName);
+    addNewProductPage.codeEnter();
+    addNewProductPage.genderUnisexCheck();
+    addNewProductPage.quantityEnter();
+    addNewProductPage.uploadImage();
+    addNewProductPage.dateValidFromEnter();
+    addNewProductPage.dateValidToEnter();
+
+    addNewProductPage.tabInformationOpen(); // открываю вкладку Information
+    addNewProductPage.manufacturerSelect();
+    addNewProductPage.keywordsEnter();
+    addNewProductPage.shortDescriptionEnter();
+    addNewProductPage.descriptionEnter(productName);
+    addNewProductPage.headTitleEnter(productName);
+    addNewProductPage.metaDescriptionEnter();
+
+    addNewProductPage.tabPricesOpen(); // открываю вкладку Prices
+    addNewProductPage.purchasePriceEnter();
+    addNewProductPage.currencyCodeSelect();
+    addNewProductPage.priceUsdEnter();
+
+    addNewProductPage.saveProduct();
+    catalogPage.isProductAppear(productName);
   }
 }

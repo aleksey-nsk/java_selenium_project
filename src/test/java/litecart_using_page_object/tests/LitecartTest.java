@@ -32,6 +32,14 @@ public class LitecartTest extends TestBase {
   }
 
   @Test
+  public void test012() {
+    System.out.print("\n\n***** Внутри метода test012() *****\n\n");
+    app.openAdminPanel();
+    app.addProduct();
+    app.exitAdminPanel();
+  }
+
+  @Test
   public void test013() {
     System.out.print("\n\n***** Внутри метода test013() *****\n\n");
     app.addOneProductToBasket();
