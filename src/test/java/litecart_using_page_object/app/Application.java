@@ -4,6 +4,7 @@ import litecart_using_page_object.pages.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 // В тестах вообще нигде не видно что используется Селениум.
@@ -189,5 +190,21 @@ public class Application {
       // if (i == 1) { break; } // использую для отладки
     }
     editCountryPage.refuseToEdit();
+  }
+
+  public void checkAvailableLogs() {
+    System.out.println("\nМЕТОД ПРОВЕРЯЮЩИЙ КАКИЕ ЛОГИ ДОСТУПНЫ");
+    Set<String> logTypes = driver.manage().logs().getAvailableLogTypes();
+    System.out.println("Доступны следующие логи: " + logTypes); // [browser, driver, client]
+  }
+
+  public void getBrowserLogs() {
+    System.out.println("\nМЕТОД ДЛЯ ПРОВЕРКИ ОТСУТСТВИЯ СООБЩЕНИЙ В ЛОГЕ БРАУЗЕРА");
+    catalogPage.open();
+    int amountOfProducts = catalogPage.amountOfProducts();
+    for (int i = 1; i <= amountOfProducts; i++) {
+      catalogPage.clickProductAndGetBrowserLogs(i);
+      // if (i == 2) { break; } // использую для отладки
+    }
   }
 }

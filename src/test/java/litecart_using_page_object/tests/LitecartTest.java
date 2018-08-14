@@ -55,4 +55,13 @@ public class LitecartTest extends TestBase {
     app.checkLinksInNewWindow();
     app.exitAdminPanel();
   }
+
+  @Test
+  public void test017() {
+    System.out.print("\n\n***** Внутри метода test017() *****\n\n");
+    app.openAdminPanel();
+    app.checkAvailableLogs();
+    app.getBrowserLogs();
+    app.exitAdminPanel();
+  }
 }
