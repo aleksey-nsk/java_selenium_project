@@ -21,6 +21,7 @@ public class Application {
   private RegistrationPage registrationPage;
   private AddNewProductPage addNewProductPage;
   private CatalogPage catalogPage;
+  private EditCountryPage editCountryPage;
 
   public Application() {
     System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver_win32.exe");
@@ -35,6 +36,7 @@ public class Application {
     registrationPage = new RegistrationPage(driver);
     addNewProductPage = new AddNewProductPage(driver);
     catalogPage = new CatalogPage(driver);
+    editCountryPage = new EditCountryPage(driver);
   }
 
   public void quit() {
@@ -176,5 +178,16 @@ public class Application {
 
     addNewProductPage.saveProduct();
     catalogPage.isProductAppear(productName);
+  }
+
+  public void checkLinksInNewWindow() {
+    System.out.println("\nПРОВЕРИМ ЧТО ССЫЛКИ ОТКРЫВАЮТСЯ В НОВОМ ОКНЕ");
+    editCountryPage.open();
+    int amountOfExternalLinks = editCountryPage.amountOfExternalLinks();
+    for (int i = 0; i < amountOfExternalLinks; i++) {
+      editCountryPage.checkCurrentExternalLink(i);
+      // if (i == 1) { break; } // использую для отладки
+    }
+    editCountryPage.refuseToEdit();
   }
 }
