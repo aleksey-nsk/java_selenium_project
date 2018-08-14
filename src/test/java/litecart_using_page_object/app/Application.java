@@ -199,7 +199,7 @@ public class Application {
   }
 
   public void getBrowserLogs() {
-    System.out.println("\nМЕТОД ДЛЯ ПРОВЕРКИ ОТСУТСТВИЯ СООБЩЕНИЙ В ЛОГЕ БРАУЗЕРА");
+    System.out.println("\nМЕТОД ДЛЯ ПРОВЕРКИ СООБЩЕНИЙ В ЛОГЕ БРАУЗЕРА");
     catalogPage.open();
     int amountOfProducts = catalogPage.amountOfProducts();
     for (int i = 1; i <= amountOfProducts; i++) {
