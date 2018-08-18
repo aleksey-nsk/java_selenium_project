@@ -79,9 +79,10 @@ public class AddNewProductPage extends Page {
   public void priceUsdEnter() { priceUsd.sendKeys("23"); }
 
   public void quantityEnter() {
-    String selectAll = Keys.chord(Keys.CONTROL, "a"); // Ctrl + A
-    quantity.sendKeys(selectAll);
-    quantity.sendKeys(Keys.DELETE);
+    // String selectAll = Keys.chord(Keys.CONTROL, "a"); // Ctrl + A
+    // quantity.sendKeys(selectAll);
+    // quantity.sendKeys(Keys.DELETE);
+    quantity.clear();
     quantity.sendKeys("7");
   }
 
