@@ -27,10 +27,13 @@ public class AddProductTest extends TestBase {
     driver.findElement(By.xpath("//input[@name='name[en]']")).sendKeys(name);
     driver.findElement(By.xpath("//input[@name='code']")).sendKeys("12345");
     driver.findElement(By.xpath("//input[@value='1-3']")).click();
-    String selectAll = Keys.chord(Keys.CONTROL, "a"); // Ctrl + A
-    driver.findElement(By.xpath("//input[@name='quantity']")).sendKeys(selectAll);
-    driver.findElement(By.xpath("//input[@name='quantity']")).sendKeys(Keys.DELETE);
+
+    // String selectAll = Keys.chord(Keys.CONTROL, "a"); // Ctrl + A
+    // driver.findElement(By.xpath("//input[@name='quantity']")).sendKeys(selectAll);
+    // driver.findElement(By.xpath("//input[@name='quantity']")).sendKeys(Keys.DELETE);
+    driver.findElement(By.xpath("//input[@name='quantity']")).clear();
     driver.findElement(By.xpath("//input[@name='quantity']")).sendKeys("7");
+
     File fileImage = new File("images\\duck.png");
     String absolutePathToFile = fileImage.getAbsolutePath(); // абсолютный путь к файлу начиная с корня системы
     driver.findElement(By.xpath("//input[@name='new_images[]']")).sendKeys(absolutePathToFile);
